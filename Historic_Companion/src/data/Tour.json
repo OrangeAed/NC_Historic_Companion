@@ -1,0 +1,16 @@
+{
+  "1": {
+    "name": "The American flag that changed history",
+    "image": "../assets/images/flag.jpg",
+    "abridgedText": "This flag was indirectly responsible for the assassination of Lincoln",
+    "text": "*Insert the full flag story here",
+    "audio": "../assets/audio/flag.mp3"
+  },
+  "2": {
+    "name": "Civil War Cannon",
+    "image": "../assets/images/cannon.jpg",
+    "abridgedText": "This cannon was used in the Civil War and was found in the ICW in 2015",
+    "text": "*Insert the cannon story here",
+    "audio": "../assets/audio/cannon.mp3"
+  }
+}
