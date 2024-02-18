@@ -4,12 +4,22 @@ import { Link } from 'react-router-dom';
 import TourLocation from './TourLocation';
 import tourData from '../../data/Tour.json';
 
+// Define the type Tour
+type Tour = {
+    name: string;
+    image: string;
+    abridgedText: string;
+    text: string;
+    audio: string;
+};
+
 function TourController() {
-    const [tours, setTours] = useState([]);
+    // Explicitly define the type of tours state
+    const [tours, setTours] = useState<Tour[]>([]);
 
     useEffect(() => {
         // Fetch the tour data when the component mounts
-        setTours(Object.values(tourData));
+        setTours(Object.values(tourData) as Tour[]);
     }, []);
 
     return (

@@ -1,18 +1,15 @@
-// VisitorLayout.tsx
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-function VisitorLayout({ children }) {
+type VisitorLayoutProps = {
+    children: ReactNode;
+};
+
+function VisitorLayout({ children }: VisitorLayoutProps) {
     return (
         <div>
             <header>
-                {/* Visitor-specific header content */}
-            </header>
-            <main>
                 {children}
-            </main>
-            <footer>
-                {/* Visitor-specific footer content */}
-            </footer>
+            </header>
         </div>
     );
 }
