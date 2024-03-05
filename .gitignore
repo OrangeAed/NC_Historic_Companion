@@ -1,1 +1,5 @@
 .idea
+node_modules
+nc-historic-companion/node_modules
+package-lock.json
+nc-historic-companion/package-lock.json
