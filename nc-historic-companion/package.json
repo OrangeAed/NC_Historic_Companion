@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.29",
     "antd": "^5.15.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
