@@ -1,17 +1,18 @@
 {
   "tours": {
-    "tour 1": {
+    "tour_1": {
       "title": "Tour 1",
       "description": "This is the first tour",
+      "image": "Tour1",
       "locations": {
-        "location 1": {
+        "location_1": {
           "title": "Location 1",
           "description": "This is the first location",
           "text": "This is the first location",
           "image": "Tour1Location1",
           "location": "Tour1Location1"
         },
-        "location 2": {
+        "location_2": {
           "title": "Location 2",
           "description": "This is the second location",
           "text": "This is the second location",
@@ -20,18 +21,19 @@
         }
       }
     },
-    "tour 2": {
+    "tour_2": {
         "title": "Tour 2",
         "description": "This is the second tour",
+        "image": "Tour2",
         "locations": {
-            "location 1": {
+            "location_1": {
             "title": "Location 1",
             "description": "This is the first location",
             "text": "This is the first location",
             "image": "Tour2Location1",
             "location": "Tour2Location1"
             },
-            "location 2": {
+            "location_2": {
             "title": "Location 2",
             "description": "This is the second location",
             "text": "This is the second location",
