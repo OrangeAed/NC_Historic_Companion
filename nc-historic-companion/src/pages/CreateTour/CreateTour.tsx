@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Button, Input, Form, Typography } from 'antd';
-import { addTour } from '../../../server/api/api.ts'; // Import the addTour function
+import { addTour } from '../../../server/old/api/api.ts'; // Import the addTour function
 
 const { Title } = Typography;
 
