@@ -1,5 +1,5 @@
 import request from 'supertest';
-import express = require('express');
+import express from 'express';
 import { Express } from 'express';
 import ApiCtrl from '../server/controllers/api';
 

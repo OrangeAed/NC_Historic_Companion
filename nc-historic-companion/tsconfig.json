@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "esModuleInterop": true,
     "target": "ES2020",
     "module": "ES2015", // Changed from "CommonJS"
     "outDir": "./dist",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
+    "esModuleInterop": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -15,6 +15,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+
+    "types": ["jest"],
 
     /* Linting */
     "strict": true,
