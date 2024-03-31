@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
-import { Button, Input, Form, Typography, message } from 'antd';
+import { Button, Input, Form, Typography } from 'antd';
+import { addTour } from '../../../server/api/api.ts'; // Import the addTour function
 
 const { Title } = Typography;
 
@@ -50,71 +51,21 @@ const CreateTour: FC = () => {
 
     // handleSubmit sends a POST request to the /api/tours endpoint with the tour data when the form is submitted
     const handleSubmit = async () => {
-        // Fetch the existing tours
-        fetch('http://localhost:5173/api/tours')
-            .then(response => {
-                if (!response) {
-                    throw new Error('No response received');
-                }
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const contentType = response.headers.get('content-type');
-                if (!contentType) {
-                    throw new Error('No content-type received');
-                } else if (contentType.includes('application/json')) {
-                    return response.json();
-                } else if (contentType.includes('text/html')) {
-                    return response.text();
-                } else {
-                    throw new Error(`Invalid content-type. Expected application/json, got ${contentType}`);
-                }
-            })
-            .then(data => {
-                // If the data is a string, it means the server returned HTML
-                if (typeof data === 'string') {
-                    console.error('Received HTML:', data);
-                    return;
-                }
-
-                // If the tour title is unique, send the POST request
-                console.log('Sending data:', tourData);
-                return fetch('http://localhost:5173/api/tours', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(tourData),
-                });
-            })
-            .then(response => {
-                if (!response) {
-                    throw new Error('No response received');
-                }
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const contentType = response.headers.get('content-type');
-                if (!contentType || !contentType.includes('application/json')) {
-                    throw new Error('Invalid content-type. Expected application/json');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Do something after the tour is successfully created
-                // For example, clear the form fields
-                setTourData({
-                    title: '',
-                    description: '',
-                    image: '',
-                    locations: {},
-                });
-                message.success('Tour created successfully');
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-            });
+        try {
+            const response = await addTour(tourData); // Use the addTour function to send the POST request
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                throw new Error('Invalid content-type. Expected application/json');
+            }
+            return response.json();
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+        }
     };
+
     // The return statement renders the form for creating a new tour
     return (
         <div>
