@@ -26,14 +26,14 @@ app.use(express.static(path.resolve(__dirname, '../frontend/dist')));
 app.use(express.json());
 
 app.get('/tours', (res: Response) => {
-    // fs.readFile('tours.json', 'utf8', (err, data) => {
-    //     if (err) {
-    //         console.error(err);
-    //         res.status(500).send('Error reading tours.json');
-    //         return;
-    //     }
-    //     res.json(JSON.parse(data));
-    // });
+    fs.readFile('tours.json', 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error reading tours.json');
+            return;
+        }
+        res.json(JSON.parse(data));
+    });
 
 });
 
