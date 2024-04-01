@@ -10,12 +10,11 @@ import * as http from "http";
 
 const app: Express = express();
 
+app.use(express.json());
+
 app.get('/tours', apiCtrl.getAllTours);
 app.get('/tours/:id', apiCtrl.getTour);
-// app.post('/tours', apiCtrl.addTour);
-app.post('/tours', (req, res) => {
-    console.log('POST /tours request body:', req.body);
-});
+app.post('/tours', apiCtrl.addTour);
 app.delete('/tours/:id', apiCtrl.deleteTour);
 
 const originalData = fs.readFileSync(path.resolve(__dirname, '../server/tours.json'), 'utf8');
@@ -92,14 +91,34 @@ describe('POST /tours', () => {
     it('should add a new tour', async () => {
         const newTour = {
             id: 'tour_3',
-            name: 'New Tour',
-            // other properties...
+            title: 'New Tour',
+            description: 'This is the third tour',
+            image: 'Tour3',
+            locations: {
+                location_1: {
+                    title: 'Location 1',
+                    description: 'This is the first location',
+                    text: 'This is the first location',
+                    image: 'Tour3Location1',
+                    location: 'Tour3Location1'
+                },
+                location_2: {
+                    title: 'Location 2',
+                    description: 'This is the second location',
+                    text: 'This is the second location',
+                    image: 'Tour3Location2',
+                    location: 'Tour3Location2'
+                }
+            }
         };
 
+        const beforeAdding = await request(app).get('/tours');
+        console.log("before: ", beforeAdding.body)
         const res = await request(app)
             .post('/tours')
             .send(newTour);
 
+        console.log(res.text)
         expect(res.status).toBe(201);
         expect(res.text).toBe('Tour added successfully');
 
@@ -108,7 +127,9 @@ describe('POST /tours', () => {
         expect(getRes.body).toEqual(newTour);
 
         const allToursRes = await request(app).get('/tours');
-        expect(allToursRes.body.tours).toHaveProperty(newTour.id);
+        console.log("AFTER: ", allToursRes.body)
+        expect(allToursRes.body["tours"].length).toEqual(beforeAdding.body["tours"].length + 1);
+        expect (allToursRes.body["tours"]["tour_3"]).toEqual(newTour);
     });
 });
 

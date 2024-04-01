@@ -61,22 +61,31 @@ export default class ApiCtrl {
         }
     }
 
-    addTour = (req: Request, res: Response, next: NextFunction) => {
-        console.log("next: " + next)
+    addTour = async (req: Request, res: Response, next: NextFunction) => {
+        // console.log("next: " + next)
         const newTour = req.body;
+        if (!newTour || !newTour.id) {
+            return res.status(400).send('Invalid tour data: ' + JSON.stringify(newTour));
+        }
+        try{
+            // Add the new tour to the tours object
+            this.tours[newTour.id] = newTour;
+        } catch(err){
+            console.error(err);
+            res.status(500).send('Tour did not ');
+        }
 
-        // Add the new tour to the tours object
-        this.tours[newTour.id] = newTour;
 
         // Write the updated tours data back to the tours.json file
-        fs.writeFile(path.resolve(__dirname, '../tours.json'), JSON.stringify(this.tours, null, 2), (err) => {
-            if (err) {
-                console.error(err);
-                res.status(500).send('Error writing to tours.json');
-            } else {
-                res.status(201).send('Tour added successfully');
-            }
-        });
+
+        // Write the updated tours data back to the tours.json file
+        try {
+            await fs.promises.writeFile(path.resolve(__dirname, '../tours.json'), JSON.stringify({"tours": this.tours}, null, 2));
+            res.status(201).send('Tour added successfully');
+        } catch (err) {
+            console.error(err);
+            res.status(500).send('Error writing to tours.json');
+        }
     }
 
     deleteTour = (req: Request, res: Response, next: NextFunction) => {
