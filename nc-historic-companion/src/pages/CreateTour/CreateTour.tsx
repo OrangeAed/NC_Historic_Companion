@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { Button, Input, Form, Typography } from 'antd';
-import { addTour } from '../../../server/old/api/api.ts'; // Import the addTour function
+import { addTour } from '../../api/api';
 
 const { Title } = Typography;
 
@@ -50,17 +50,33 @@ const CreateTour: FC = () => {
     };
 
     // handleSubmit sends a POST request to the /api/tours endpoint with the tour data when the form is submitted
+    // handleSubmit sends a POST request to the /api/tours endpoint with the tour data when the form is submitted
     const handleSubmit = async () => {
+        // Create a tourData object that includes the locations for the tour
+        const tourDataWithLocations: TourData = {
+            ...tourData,
+            locations: {
+                "location_1": {
+                    title: "Location 1",
+                    description: "This is the first location",
+                    image: "Tour1Location1",
+                },
+                "location_2": {
+                    title: "Location 2",
+                    description: "This is the second location",
+                    image: "Tour1Location2",
+                },
+                // Add more locations as needed
+            },
+        };
+
         try {
-            const response = await addTour(tourData); // Use the addTour function to send the POST request
+            const response = await addTour(tourDataWithLocations);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            const contentType = response.headers.get('content-type');
-            if (!contentType || !contentType.includes('application/json')) {
-                throw new Error('Invalid content-type. Expected application/json');
-            }
-            return response.json();
+            const data = await response.json();
+            console.log('Tour added successfully:', data);
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
         }

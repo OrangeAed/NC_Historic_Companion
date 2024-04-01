@@ -1,5 +1,5 @@
 import express from 'express';
-import ApiCtrl from '../controllers/api';
+import ApiCtrl from '../controllers/api.ts';
 
 const router = express.Router();
 export const apiCtrl = new ApiCtrl();
