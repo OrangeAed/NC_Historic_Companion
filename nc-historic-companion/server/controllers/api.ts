@@ -1,17 +1,30 @@
-import { NextFunction, Request, Response } from "express";
-// import { TourData } from "../tours.json";
-import fs from 'fs';
+import { Request, Response, NextFunction } from 'express';
 import path from 'path';
+import fs from 'fs';
 
 export default class ApiCtrl {
+    private tours: any;
+
+    constructor() {
+        try {
+            const data = fs.readFileSync(path.resolve(__dirname, '../tours.json'), 'utf8');
+            console.log("Data: ", data)
+            this.tours = JSON.parse(data)["tours"];
+            console.log("Tours: ", this.tours) // Changed this line
+        } catch (err) {
+            console.error(err);
+            this.tours = {};
+        }
+    }
+
+    /**
+     * This method is used to get all tours from the tours.json file.
+     * It does not require any parameters.
+     * It reads the tours.json file and sends the contents as a response.
+     * If there is an error reading the file, it sends a 500 status code with an error message.
+     * Example usage: app.get('/tours', apiCtrl.getAllTours);
+     */
     getAllTours = (req: Request, res: Response, next: NextFunction) => {
-        /**
-         * This method is used to get all tours from the tours.json file.
-         * It does not require any parameters.
-         * It reads the tours.json file and sends the contents as a response.
-         * If there is an error reading the file, it sends a 500 status code with an error message.
-         * Example usage: app.get('/tours', apiCtrl.getAllTours);
-         */
         try {
             console.log("Getting all tours...")
         } catch (err) {
@@ -40,28 +53,15 @@ export default class ApiCtrl {
      * Example usage: app.get('/tours/:id', apiCtrl.getTour);
      */
     getTour = (req: Request, res: Response, next: NextFunction) => {
-        try {
-            console.log("Getting all tours...")
-        } catch (err) {
-            console.error(err);
-            // Just putting the next line to stop the unused error
-            console.log("Next: " + next);
-            res.status(500).send('Error reading tours.json');
-        }
+        console.log("next: " + next)
+        const tour = this.tours[req.params.id];
 
-        try {
-            const data = fs.readFileSync(path.resolve(__dirname, '../tours.json'), 'utf8');
-            const tours = JSON.parse(data);
-            const tour = tours.find((tour: { id: string; }) => tour.id === req.params.id);
-
-            if (tour) {
-                res.json(tour);
-            } else {
-                res.status(404).send('Tour not found');
-            }
-        } catch (err) {
-            console.error(err);
-            res.status(500).send('Error reading tours.json');
+        if (tour) {
+            res.json(tour);
+        } else {
+            res.status(404).send('Tour not found');
         }
     }
+
+    // other methods...
 }
