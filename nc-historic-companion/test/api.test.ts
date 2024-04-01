@@ -1,14 +1,14 @@
 import request from 'supertest';
 import express from 'express';
 import { Express } from 'express';
-import ApiCtrl from '../server/controllers/api';
 import TourData from '../server/tours.json';
+import { apiCtrl } from '../server/routes/api';
+
 
 const app: Express = express();
-const apiCtrl = new ApiCtrl();
 
 app.get('/tours', apiCtrl.getAllTours);
-
+app.get('/tours/:id', apiCtrl.getTour);
 
 const generateNotFoundText = (s: string) => {
     let notFoundText = "<!DOCTYPE html>\n";
@@ -55,20 +55,21 @@ describe('GET /tours/:id', () => {
         const res = await request(app).get('/tours/fake_tour_that_does_not_exist');
 
         expect(res.status).toBe(404);
-        expect(res.text).toBe(generateNotFoundText("fake_tour_that_does_not_exist"));
+        expect(res.text).toBe("Tour not found");
     });
 
     it('should return a 404 status code if the tour is not found', async () => {
         const res = await request(app).get('/tours/tour1a;kjdshf');
 
         expect(res.status).toBe(404);
-        expect(res.text).toBe(generateNotFoundText("tour1a;kjdshf"));
+        expect(res.text).toBe("Tour not found");
     });
 
     it('should return a 404 status code if the tour is not found', async () => {
         const res = await request(app).get('/tours/tour1/a;kjdsHf');
 
         expect(res.status).toBe(404);
+        // Fix this later
         expect(res.text).toBe(generateNotFoundText("tour1/a;kjdsHf"));
     });
 });

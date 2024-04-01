@@ -1,9 +1,9 @@
-import { Request, Response, NextFunction } from 'express';
+import {Request, Response, NextFunction} from 'express';
 import path from 'path';
 import fs from 'fs';
 
 export default class ApiCtrl {
-    private tours: any;
+    tours: any;
 
     constructor() {
         try {
@@ -64,4 +64,5 @@ export default class ApiCtrl {
     }
 
     // other methods...
+
 }
