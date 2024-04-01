@@ -3,12 +3,36 @@ import express from 'express';
 import { Express } from 'express';
 import TourData from '../server/tours.json';
 import { apiCtrl } from '../server/routes/api';
+import fs from 'fs';
+import path from 'path';
+import * as http from "http";
 
 
 const app: Express = express();
 
 app.get('/tours', apiCtrl.getAllTours);
 app.get('/tours/:id', apiCtrl.getTour);
+// app.post('/tours', apiCtrl.addTour);
+app.post('/tours', (req, res) => {
+    console.log('POST /tours request body:', req.body);
+});
+app.delete('/tours/:id', apiCtrl.deleteTour);
+
+const originalData = fs.readFileSync(path.resolve(__dirname, '../server/tours.json'), 'utf8');
+
+let server: http.Server;
+
+beforeAll(() => {
+    server = app.listen();
+});
+
+afterAll(done => {
+    server.close(done);
+});
+beforeEach(async () => {
+    // Reset the data after each test
+    await fs.promises.writeFile(path.resolve(__dirname, '../server/tours.json'), originalData);
+});
 
 const generateNotFoundText = (s: string) => {
     let notFoundText = "<!DOCTYPE html>\n";
@@ -23,16 +47,6 @@ const generateNotFoundText = (s: string) => {
     notFoundText += "</html>\n";
     return notFoundText;
 }
-
-describe('GET /tours', () => {
-    it('should return the contents of tours.json', async () => {
-        const res = await request(app).get('/tours');
-
-        expect(res.status).toBe(200);
-        expect(res.body).toBeInstanceOf(Object);
-        expect(res.body).toEqual(TourData);
-    });
-});
 
 describe('GET /tours/:id', () => {
     it('should return the tour with the given id', async () => {
@@ -71,5 +85,56 @@ describe('GET /tours/:id', () => {
         expect(res.status).toBe(404);
         // Fix this later
         expect(res.text).toBe(generateNotFoundText("tour1/a;kjdsHf"));
+    });
+});
+
+describe('POST /tours', () => {
+    it('should add a new tour', async () => {
+        const newTour = {
+            id: 'tour_3',
+            name: 'New Tour',
+            // other properties...
+        };
+
+        const res = await request(app)
+            .post('/tours')
+            .send(newTour);
+
+        expect(res.status).toBe(201);
+        expect(res.text).toBe('Tour added successfully');
+
+        const getRes = await request(app).get('/tours/tour_3');
+        expect(getRes.status).toBe(200);
+        expect(getRes.body).toEqual(newTour);
+
+        const allToursRes = await request(app).get('/tours');
+        expect(allToursRes.body.tours).toHaveProperty(newTour.id);
+    });
+});
+
+describe('DELETE /tours/:id', () => {
+    it('should delete the tour with the given id', async () => {
+        const allToursBeforeDelete = await request(app).get('/tours');
+        const initialLength = Object.keys(allToursBeforeDelete.body.tours).length;
+
+        const res = await request(app).delete('/tours/tour_1');
+
+        expect(res.status).toBe(200);
+        expect(res.text).toBe('Tour deleted successfully');
+
+        const allToursAfterDelete = await request(app).get('/tours');
+        const finalLength = Object.keys(allToursAfterDelete.body.tours).length;
+
+        // Assertion
+        expect(finalLength).toBe(initialLength - 1);    });
+});
+
+describe('GET /tours', () => {
+    it('should return the contents of tours.json', async () => {
+        const res = await request(app).get('/tours');
+
+        expect(res.status).toBe(200);
+        expect(res.body).toBeInstanceOf(Object);
+        expect(res.body).toEqual(TourData);
     });
 });

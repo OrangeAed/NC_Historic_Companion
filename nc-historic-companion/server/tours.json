@@ -22,25 +22,25 @@
       }
     },
     "tour_2": {
-        "title": "Tour 2",
-        "description": "This is the second tour",
-        "image": "Tour2",
-        "locations": {
-            "location_1": {
-            "title": "Location 1",
-            "description": "This is the first location",
-            "text": "This is the first location",
-            "image": "Tour2Location1",
-            "location": "Tour2Location1"
-            },
-            "location_2": {
-            "title": "Location 2",
-            "description": "This is the second location",
-            "text": "This is the second location",
-            "image": "Tour2Location2",
-            "location": "Tour2Location2"
-            }
+      "title": "Tour 2",
+      "description": "This is the second tour",
+      "image": "Tour2",
+      "locations": {
+        "location_1": {
+          "title": "Location 1",
+          "description": "This is the first location",
+          "text": "This is the first location",
+          "image": "Tour2Location1",
+          "location": "Tour2Location1"
+        },
+        "location_2": {
+          "title": "Location 2",
+          "description": "This is the second location",
+          "text": "This is the second location",
+          "image": "Tour2Location2",
+          "location": "Tour2Location2"
         }
+      }
     }
   }
 }

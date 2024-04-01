@@ -8,9 +8,7 @@ export default class ApiCtrl {
     constructor() {
         try {
             const data = fs.readFileSync(path.resolve(__dirname, '../tours.json'), 'utf8');
-            console.log("Data: ", data)
             this.tours = JSON.parse(data)["tours"];
-            console.log("Tours: ", this.tours) // Changed this line
         } catch (err) {
             console.error(err);
             this.tours = {};
@@ -25,15 +23,15 @@ export default class ApiCtrl {
      * Example usage: app.get('/tours', apiCtrl.getAllTours);
      */
     getAllTours = (req: Request, res: Response, next: NextFunction) => {
-        try {
-            console.log("Getting all tours...")
-        } catch (err) {
-            console.error(err);
-            // Just putting the next 2 lines to stop the unused error
-            console.log("Request: " + req);
-            console.log("Next: " + next);
-            res.status(500).send('Error reading tours.json');
-        }
+        // try {
+        //     console.log("Getting all tours...")
+        // } catch (err) {
+        //     console.error(err);
+        //     // Just putting the next 2 lines to stop the unused error
+        //     console.log("Request: " + req);
+        //     console.log("Next: " + next);
+        //     res.status(500).send('Error reading tours.json');
+        // }
 
         try {
             const data = fs.readFileSync(path.resolve(__dirname, '../tours.json'), 'utf8');
@@ -53,7 +51,7 @@ export default class ApiCtrl {
      * Example usage: app.get('/tours/:id', apiCtrl.getTour);
      */
     getTour = (req: Request, res: Response, next: NextFunction) => {
-        console.log("next: " + next)
+        // console.log("next: " + next)
         const tour = this.tours[req.params.id];
 
         if (tour) {
@@ -63,6 +61,46 @@ export default class ApiCtrl {
         }
     }
 
-    // other methods...
+    addTour = (req: Request, res: Response, next: NextFunction) => {
+        console.log("next: " + next)
+        const newTour = req.body;
 
+        // Add the new tour to the tours object
+        this.tours[newTour.id] = newTour;
+
+        // Write the updated tours data back to the tours.json file
+        fs.writeFile(path.resolve(__dirname, '../tours.json'), JSON.stringify(this.tours, null, 2), (err) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send('Error writing to tours.json');
+            } else {
+                res.status(201).send('Tour added successfully');
+            }
+        });
+    }
+
+    deleteTour = (req: Request, res: Response, next: NextFunction) => {
+        // console.log("next: " + next)
+        const tourId = req.params.id;
+
+        // Check if the tour exists
+        if (!this.tours[tourId]) {
+            res.status(404).send('Tour not found');
+            return;
+        }
+
+        // Delete the tour from the tours object
+        delete this.tours[tourId];
+
+        // Write the updated tours data back to the tours.json file
+        fs.writeFile(path.resolve(__dirname, '../tours.json'), JSON.stringify(this.tours, null, 2), (err) => {
+            if (err) {
+                console.error(err);
+                res.status(500).send('Error writing to tours.json');
+            } else {
+                res.status(200).send('Tour deleted successfully');
+            }
+        });
+    }
+    // other methods...}
 }
