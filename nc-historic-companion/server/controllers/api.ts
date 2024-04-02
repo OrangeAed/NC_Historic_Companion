@@ -1,11 +1,6 @@
 import {Request, Response, NextFunction} from 'express';
-import { fileURLToPath } from 'url';
-import { dirname, resolve } from 'path';
+import { resolve } from 'path';
 import fs from 'fs';
-
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 export default class ApiCtrl {
     tours: any;
