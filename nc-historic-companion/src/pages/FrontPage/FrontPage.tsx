@@ -41,7 +41,8 @@ const FrontPage: FC = () => {
     const handleButtonClick = () => {
         if (data) {
             const firstLocationKey = Object.keys(data.locations)[0];
-            navigate(`/tour/${tour}/${firstLocationKey}`);
+            // todo: fix this
+            navigate(`/tour/tour_1/location_1`);
         }
     };
 

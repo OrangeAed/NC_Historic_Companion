@@ -3,20 +3,27 @@
     "tour_1": {
       "title": "Tour 1",
       "description": "This is the first tour",
-      "image": "Tour1",
+      "image": "../photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg",
+      "locations": {
+        "location_1": {{
+  "tours": {
+    "tour_1": {
+      "title": "Tour 1",
+      "description": "This is the first tour",
+      "image": "../photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg",
       "locations": {
         "location_1": {
           "title": "Location 1",
           "description": "This is the first location",
-          "text": "This is the first location",
-          "image": "Tour1Location1",
+          "text": "This historic church was first constructed in 1756. It was used as a military bunker during the Civil War. The church was burned down in 1865 and rebuilt in 1878. The church was used as a school for African American children in the 1930s. The church was restored in 1952, though these walls are original. Recent scans of the ground in the church have revealed unmarked graves, which may help us learn more about life in Brunswicktown during the Civil War.",
+          "image": "../../../photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg",
           "location": "Tour1Location1"
         },
         "location_2": {
           "title": "Location 2",
-          "description": "This is the second location",
+          "description": "This is a real cannon used to defend Fort Anderson during the Civil War. It was discovered poking out of the water in the Cape Fear River in 2017. The cannon was restored and now belongs to the Brunswick Town/Fort Anderson State Historic Site. Notice the insignia on the top of the cannon. This insignia was used to identify the cannon as belonging to the Confederate Army, with the smaller symbols specifying the details of its production.",
           "text": "This is the second location",
-          "image": "Tour1Location2",
+          "image": "../../../photos/D_2020_06_09_IMG2595_BrunswickTown_Fort_Anderson_Historic_Site_Singing_On_The_Land_300_LF_4.jpg",
           "location": "Tour1Location2"
         }
       }
@@ -24,7 +31,45 @@
     "tour_2": {
         "title": "Tour 2",
         "description": "This is the second tour",
-        "image": "Tour2",
+        "image": "../photos/D_2020_06_09_7985_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Canon_300_LF.jpg",
+        "locations": {
+            "location_1": {
+            "title": "Location 1",
+            "description": "This is the first location",
+            "text": "This is the first location",
+            "image": "Tour2Location1",
+            "location": "Tour2Location1"
+            },
+            "location_2": {
+            "title": "Location 2",
+            "description": "This is the second location",
+            "text": "This is the second location",
+            "image": "Tour2Location2",
+            "location": "Tour2Location2"
+            }
+        }
+    }
+  }
+}
+          "title": "Location 1",
+          "description": "This is the first location",
+          "text": "This historic church was first constructed in 1756. It was used as a military bunker during the Civil War. The church was burned down in 1865 and rebuilt in 1878. The church was used as a school for African American children in the 1930s. The church was restored in 1952, though these walls are original. Recent scans of the ground in the church have revealed unmarked graves, which may help us learn more about life in Brunswicktown during the Civil War.",
+          "image": "../photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg",
+          "location": "Tour1Location1"
+        },
+        "location_2": {
+          "title": "Location 2",
+          "description": "This is a real cannon used to defend Fort Anderson during the Civil War. It was discovered poking out of the water in the Cape Fear River in 2017. The cannon was restored and now belongs to the Brunswick Town/Fort Anderson State Historic Site. Notice the insignia on the top of the cannon. This insignia was used to identify the cannon as belonging to the Confederate Army, with the smaller symbols specifying the details of its production.",
+          "text": "This is the second location",
+          "image": "../photos/D_2020_06_09_IMG2595_BrunswickTown_Fort_Anderson_Historic_Site_Singing_On_The_Land_300_LF_4.jpg",
+          "location": "Tour1Location2"
+        }
+      }
+    },
+    "tour_2": {
+        "title": "Tour 2",
+        "description": "This is the second tour",
+        "image": "../photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg",
         "locations": {
             "location_1": {
             "title": "Location 1",
