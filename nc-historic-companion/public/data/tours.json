@@ -3,7 +3,7 @@
     "tour_1": {
       "title": "Tour 1",
       "description": "This is the first tour",
-      "image": "Tour1",
+      "image": "../../",
       "locations": {
         "location_1": {
           "title": "Location 1",

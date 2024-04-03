@@ -47,6 +47,16 @@ const generateNotFoundText = (s: string) => {
     return notFoundText;
 }
 
+describe('GET /tours', () => {
+    it('should return the contents of tours.json', async () => {
+        const res = await request(app).get('/tours');
+
+        expect(res.status).toBe(200);
+        expect(res.body).toBeInstanceOf(Object);
+        expect(res.body).toEqual(TourData);
+    });
+});
+
 describe('GET /tours/:id', () => {
     it('should return the tour with the given id', async () => {
         const res = await request(app).get('/tours/tour_1');
@@ -150,12 +160,3 @@ describe('DELETE /tours/:id', () => {
         expect(finalLength).toBe(initialLength);    });
 });
 
-describe('GET /tours', () => {
-    it('should return the contents of tours.json', async () => {
-        const res = await request(app).get('/tours');
-
-        expect(res.status).toBe(200);
-        expect(res.body).toBeInstanceOf(Object);
-        expect(res.body).toEqual(TourData);
-    });
-});
