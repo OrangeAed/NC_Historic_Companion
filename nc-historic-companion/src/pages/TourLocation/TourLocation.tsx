@@ -1,14 +1,12 @@
 import { FC, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { getTour } from '../../api/api';
+import { TourData, LocationData } from '../../types';
 
-type Params = Record<string, string>;
-
-interface LocationData {
-    title: string;
-    description: string;
-    image: string;
-    text: string;
-}
+type Params = {
+    tour: string;
+    location: string;
+};
 
 const TourLocation: FC = () => {
     const params = useParams<Params>();
@@ -22,9 +20,11 @@ const TourLocation: FC = () => {
             return;
         }
 
-        fetch(`/api/tours/${tour}/${location}`)
-            .then(response => response.json())
-            .then(data => setData(data))
+        getTour(tour)
+            .then(tourData => {
+                const locationData = tourData.locations[location];
+                setData(locationData);
+            })
             .catch(error => {
                 console.error(error);
                 // Handle the error appropriately in your application

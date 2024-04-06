@@ -2,6 +2,7 @@ export interface LocationData {
     title: string;
     description: string;
     image: string;
+    text: string;
 }
 
 export interface TourData {
