@@ -1,28 +1,31 @@
-import { readFile, writeFile } from 'fs/promises';
+import {TourData, LocationData} from "../types.ts";
 
-export const getAllTours = async () => {
-    const data = await readFile('public/data/tours.json', 'utf-8');
-    return JSON.parse(data);
-};
 
-export const addTour = async (tourData: any) => {
-    const data = await readFile('public/data/tours.json', 'utf-8');
-    const tours = JSON.parse(data);
-    tours.tours[tourData.id] = tourData;
-    await writeFile('public/data/tours.json', JSON.stringify(tours), 'utf-8');
-    return tourData;
-};
+const apiUrl = 'http://localhost:5000/api';
 
-export const getTour = async (id: string) => {
-    const data = await readFile('public/data/tours.json', 'utf-8');
-    const tours = JSON.parse(data);
-    return tours.tours[id];
-};
+export const getAllTours = async (): Promise<Record<string, TourData>> => {
+    const response = await fetch(`${apiUrl}/tours`);
+    const data = await response.json();
+    return data.tours;
+}
 
-export const deleteTour = async (id: string) => {
-    const data = await readFile('public/data/tours.json', 'utf-8');
-    const tours = JSON.parse(data);
-    delete tours.tours[id];
-    await writeFile('public/data/tours.json', JSON.stringify(tours), 'utf-8');
-    return { message: `Tour with id ${id} deleted` };
-};
+export const getTour = async (id: string): Promise<TourData> => {
+    const response = await fetch(`${apiUrl}/tours/${id}`);
+    return response.json();
+}
+
+export const addTour = async (tour: TourData): Promise<void> => {
+    await fetch(`${apiUrl}/tours`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(tour),
+    });
+}
+
+export const deleteTour = async (id: string): Promise<void> => {
+    await fetch(`${apiUrl}/tours/${id}`, {
+        method: 'DELETE',
+    });
+}

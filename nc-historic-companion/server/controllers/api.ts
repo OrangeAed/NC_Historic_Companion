@@ -9,6 +9,7 @@ export default class ApiCtrl {
             const data = readFileSync(dataPath, 'utf8');
             res.json(JSON.parse(data));
         } catch (err) {
+
             console.error(err);
             res.status(500).send('Error reading tours.json');
         }

@@ -1,24 +1,22 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { getAllTours } from "../../api/api.ts";
+import {TourData, LocationData} from "../../types.ts";
 
-interface Tour {
-    title: string;
-    description: string;
-    image: string;
-}
+const TourList: FC = () => {
+    const [data, setData] = useState<Record<string, TourData> | null>(null);
 
-interface ToursData {
-    tours: Record<string, Tour>;
-}
+    useEffect(() => {
+        getAllTours().then((response) => { setData(response) });
+    }, []);
 
-interface TourListProps {
-    data: ToursData;
-}
+    if (!data) {
+        return <div>Loading...</div>;
+    }
 
-const TourList: FC<TourListProps> = ({ data }) => {
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
-            {Object.entries(data.tours).map(([tourId, tour]) => (
+            {Object.entries(data).map(([tourId, tour]) => (
                 <Link key={tourId} to={`/tour/${tourId}`}>
                     <div style={{ border: '1px solid #ccc', padding: '10px', margin: '10px', display: 'inline-block' }}>
                         <img src={tour.image} alt={tour.title} style={{ width: '100%', height: 'auto' }} />
