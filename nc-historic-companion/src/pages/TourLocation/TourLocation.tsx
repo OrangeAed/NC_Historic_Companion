@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getTour } from '../../api/api';
-import { TourData, LocationData } from '../../types';
+import { LocationData } from '../../types';
 
 type Params = {
     tour: string;
@@ -56,6 +56,7 @@ const TourLocation: FC = () => {
     if (!data) {
         return <div>Loading...</div>;
     }
+    console.log(data.audio)
 
     return (
         <div style={{ textAlign: 'center' }}>
@@ -63,6 +64,10 @@ const TourLocation: FC = () => {
             <img src={data.image} alt={data.title} style={{ maxWidth: '100%', maxHeight: '300px' }} />
             <p style={{ marginTop: '20px' }}>{data.description}</p>
             <p>{data.text}</p>
+            <audio controls>
+                <source src={data.audio} type="audio/mpeg" />
+                Your browser does not support the audio element.
+            </audio>
             <div>
                 <a href={getPreviousLocationUrl()}><button>Previous</button></a>
                 <a href={getNextLocationUrl()}><button>Next</button></a>

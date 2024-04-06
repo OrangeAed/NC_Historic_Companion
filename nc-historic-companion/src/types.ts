@@ -3,6 +3,7 @@ export interface LocationData {
     description: string;
     image: string;
     text: string;
+    audio: string
 }
 
 export interface TourData {
@@ -10,4 +11,5 @@ export interface TourData {
     description: string;
     image: string;
     locations: Record<string, LocationData>;
+    audio: string
 }
