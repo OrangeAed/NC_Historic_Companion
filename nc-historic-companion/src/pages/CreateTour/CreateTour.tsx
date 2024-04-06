@@ -22,7 +22,7 @@ const CreateTour: FC = () => {
         });
     };
 
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {
             const file = event.target.files[0];
             const fileName = `${tourData.title}.${file.name.split('.').pop()}`;
@@ -33,35 +33,44 @@ const CreateTour: FC = () => {
         }
     };
 
+    const handleAudioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files[0]) {
+            const file = event.target.files[0];
+            const fileName = `${tourData.title}.${file.name.split('.').pop()}`;
+            setTourData({
+                ...tourData,
+                audio: `path/to/audio/${fileName}`,
+            });
+        }
+    };
+
     const handleSubmit = async () => {
-        if (!tourData.title || !tourData.description || !tourData.image) {
-            console.error('Missing required tour data');
+        tourData.id = tourData.title.toLowerCase().replace(/ /g, '_');
+        if (!tourData.title || !tourData.description || !tourData.image || !tourData.audio || !tourData.id) {
+            console.error('Missing required tour data:', tourData);
             return;
         }
 
-        const tourDataWithLocations: TourData = {
-            ...tourData,
-            id: tourData.title.toLowerCase().replace(/\s/g, '_'),
-            locations: {
-                "location_1": {
-                    title: "Location 1",
-                    description: "This is the first location",
-                    text: "This is the first location",
-                    audio: '',
-                    image: "Tour1Location1",
-                },
-                "location_2": {
-                    title: "Location 2",
-                    description: "This is the second location",
-                    text: "This is the second location",
-                    audio: '',
-                    image: "Tour1Location2",
-                },
-            },
+
+        const formData = new FormData();
+        formData.append('title', tourData.title);
+        formData.append('id', tourData.id);
+        formData.append('description', tourData.description);
+        formData.append('image', tourData.image);
+        formData.append('audio', tourData.audio);
+
+        // Convert formData to TourData object
+        const tourDataObject: TourData = {
+            title: formData.get('title') as string,
+            id: formData.get('id') as string,
+            description: formData.get('description') as string,
+            image: formData.get('image') as string,
+            audio: formData.get('audio') as string,
+            locations: {}, // You might need to handle this according to your requirements
         };
-        console.log('tourDataWithLocations:', tourDataWithLocations);
+
         try {
-            const response = await addTour(tourDataWithLocations);
+            const response = await addTour(tourDataObject);
             if (!response.ok) {
                 console.error('There was a problem with the post operation:', response);
                 return;
@@ -83,7 +92,10 @@ const CreateTour: FC = () => {
                     <Input id="description" name="description" onChange={handleChange} />
                 </Form.Item>
                 <Form.Item label="Image" name="image">
-                    <Input type="file" id="image" name="image" onChange={handleFileChange} />
+                    <Input type="file" id="image" name="image" onChange={handleImageChange} />
+                </Form.Item>
+                <Form.Item label="Audio" name="audio">
+                    <Input type="file" id="audio" name="audio" onChange={handleAudioChange} />
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit">
