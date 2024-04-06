@@ -8,6 +8,7 @@ export interface LocationData {
 
 export interface TourData {
     title: string;
+    id: string;
     description: string;
     image: string;
     locations: Record<string, LocationData>;

@@ -14,8 +14,9 @@ export const getTour = async (id: string): Promise<TourData> => {
     return response.json();
 }
 
-export const addTour = async (tour: TourData): Promise<void> => {
-    await fetch(`${apiUrl}/tours`, {
+export const addTour = async (tour: TourData): Promise<Response> => {
+    console.log('tour:', tour)
+    return await fetch(`${apiUrl}/tours`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

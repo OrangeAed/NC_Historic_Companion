@@ -1,26 +1,17 @@
 import React, { FC, useState } from 'react';
 import { Button, Input, Form, Typography } from 'antd';
+import { addTour } from '../../api/api.ts';
+import { TourData } from "../../types.ts";
 
 const { Title } = Typography;
-
-interface LocationData {
-    title: string;
-    description: string;
-    image: string;
-}
-
-interface TourData {
-    title: string;
-    description: string;
-    image: string;
-    locations: Record<string, LocationData>;
-}
 
 const CreateTour: FC = () => {
     const [tourData, setTourData] = useState<TourData>({
         title: '',
+        id: '',
         description: '',
         image: '',
+        audio: '',
         locations: {},
     });
 
@@ -43,37 +34,39 @@ const CreateTour: FC = () => {
     };
 
     const handleSubmit = async () => {
+        if (!tourData.title || !tourData.description || !tourData.image) {
+            console.error('Missing required tour data');
+            return;
+        }
+
         const tourDataWithLocations: TourData = {
             ...tourData,
+            id: tourData.title.toLowerCase().replace(/\s/g, '_'),
             locations: {
                 "location_1": {
                     title: "Location 1",
                     description: "This is the first location",
+                    text: "This is the first location",
+                    audio: '',
                     image: "Tour1Location1",
                 },
                 "location_2": {
                     title: "Location 2",
                     description: "This is the second location",
+                    text: "This is the second location",
+                    audio: '',
                     image: "Tour1Location2",
                 },
             },
         };
-
+        console.log('tourDataWithLocations:', tourDataWithLocations);
         try {
-            const response = await fetch('/api/tours', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(tourDataWithLocations),
-            });
-
+            const response = await addTour(tourDataWithLocations);
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                console.error('There was a problem with the post operation:', response);
+                return;
             }
-
-            const data = await response.json();
-            console.log('Tour added successfully:', data);
+            console.log('Tour added successfully');
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
         }

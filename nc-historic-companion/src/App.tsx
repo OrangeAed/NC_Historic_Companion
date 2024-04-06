@@ -4,8 +4,6 @@ import TourLocation from './pages/TourLocation/TourLocation.tsx';
 import FrontPage from "./pages/FrontPage/FrontPage.tsx";
 import CreateTour from "./pages/CreateTour/CreateTour.tsx";
 import TourList from './pages/TourList/TourList.tsx';
-import tourData from './tours.json';
-
 
 function App() {
     return (
