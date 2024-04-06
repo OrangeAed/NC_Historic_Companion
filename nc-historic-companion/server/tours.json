@@ -1,10 +1,9 @@
 {
   "tours": {
     "tour_1": {
-      "id": "tour_1",
       "title": "Tour 1",
       "description": "This is the first tour",
-      "image": "Tour1",
+      "image": "../../",
       "locations": {
         "location_1": {
           "title": "Location 1",
@@ -23,7 +22,6 @@
       }
     },
     "tour_2": {
-      "id": "tour_2",
       "title": "Tour 2",
       "description": "This is the second tour",
       "image": "Tour2",

@@ -1,11 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
-import { readFile, writeFile } from 'fs/promises';
+import { readFileSync, writeFileSync } from 'fs';
 
 const dataPath = 'server/tours.json';
+
 export default class ApiCtrl {
-    async getAllTours(req: Request, res: Response, next: NextFunction) {
+    getAllTours(req: Request, res: Response, next: NextFunction) {
         try {
-            const data = await readFile(dataPath, 'utf8');
+            const data = readFileSync(dataPath, 'utf8');
             res.json(JSON.parse(data));
         } catch (err) {
             console.error(err);
@@ -13,9 +14,9 @@ export default class ApiCtrl {
         }
     }
 
-    async getTour(req: Request, res: Response, next: NextFunction) {
+    getTour(req: Request, res: Response, next: NextFunction) {
         try {
-            const data = await readFile(dataPath, 'utf8');
+            const data = readFileSync(dataPath, 'utf8');
             const tours = JSON.parse(data)["tours"];
             const tour = tours[req.params.id];
 
@@ -30,16 +31,16 @@ export default class ApiCtrl {
         }
     }
 
-    async addTour(req: Request, res: Response, next: NextFunction) {
+    addTour(req: Request, res: Response, next: NextFunction) {
         const newTour = req.body;
         if (!newTour || !newTour.id) {
             return res.status(400).send('Invalid tour data: ' + JSON.stringify(newTour));
         }
         try {
-            const data = await readFile(dataPath, 'utf8');
+            const data = readFileSync(dataPath, 'utf8');
             const tours = JSON.parse(data)["tours"];
             tours[newTour.id] = newTour;
-            await writeFile(dataPath, JSON.stringify({ "tours": tours }, null, 2));
+            writeFileSync(dataPath, JSON.stringify({ "tours": tours }, null, 2));
             res.status(201).send('Tour added successfully');
         } catch (err) {
             console.error(err);
@@ -47,17 +48,17 @@ export default class ApiCtrl {
         }
     }
 
-    async deleteTour(req: Request, res: Response, next: NextFunction) {
+    deleteTour(req: Request, res: Response, next: NextFunction) {
         const tourId = req.params.id;
         try {
-            const data = await readFile(dataPath, 'utf8');
+            const data = readFileSync(dataPath, 'utf8');
             const tours = JSON.parse(data)["tours"];
             if (!tours[tourId]) {
                 res.status(404).send('Tour not found');
                 return;
             }
             delete tours[tourId];
-            await writeFile(dataPath, JSON.stringify({ "tours": tours }, null, 2));
+            writeFileSync(dataPath, JSON.stringify({ "tours": tours }, null, 2));
             res.status(200).send('Tour deleted successfully');
         } catch (err) {
             console.error(err);
