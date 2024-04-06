@@ -1,42 +1,28 @@
-// api.ts
+import { readFile, writeFile } from 'fs/promises';
+
 export const getAllTours = async () => {
-    const response = await fetch('http://localhost:5000/tours');
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return response.json();
+    const data = await readFile('public/data/tours.json', 'utf-8');
+    return JSON.parse(data);
 };
 
 export const addTour = async (tourData: any) => {
-    const response = await fetch('http://localhost:5000/tours', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(tourData),
-    });
-
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    return response;
+    const data = await readFile('public/data/tours.json', 'utf-8');
+    const tours = JSON.parse(data);
+    tours.tours[tourData.id] = tourData;
+    await writeFile('public/data/tours.json', JSON.stringify(tours), 'utf-8');
+    return tourData;
 };
 
 export const getTour = async (id: string) => {
-    const response = await fetch(`http://localhost:5000/tours/${id}`);
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return response.json();
+    const data = await readFile('public/data/tours.json', 'utf-8');
+    const tours = JSON.parse(data);
+    return tours.tours[id];
 };
 
 export const deleteTour = async (id: string) => {
-    const response = await fetch(`http://localhost:5000/tours/${id}`, {
-        method: 'DELETE',
-    });
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return response.json();
+    const data = await readFile('public/data/tours.json', 'utf-8');
+    const tours = JSON.parse(data);
+    delete tours.tours[id];
+    await writeFile('public/data/tours.json', JSON.stringify(tours), 'utf-8');
+    return { message: `Tour with id ${id} deleted` };
 };

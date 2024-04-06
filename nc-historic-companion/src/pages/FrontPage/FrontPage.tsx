@@ -42,6 +42,7 @@ const FrontPage: FC = () => {
         if (data) {
             const firstLocationKey = Object.keys(data.locations)[0];
             navigate(`/tour/${tour}/${firstLocationKey}`);
+
         }
     };
 

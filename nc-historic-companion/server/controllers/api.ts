@@ -1,23 +1,11 @@
-import {Request, Response, NextFunction} from 'express';
-import { resolve } from 'path';
-import fs from 'fs';
+import { Request, Response, NextFunction } from 'express';
+import { readFile, writeFile } from 'fs/promises';
 
+const dataPath = 'server/tours.json';
 export default class ApiCtrl {
-    tours: any;
-
-    constructor() {
+    async getAllTours(req: Request, res: Response, next: NextFunction) {
         try {
-            const data = fs.readFileSync(resolve(__dirname, '../tours.json'), 'utf8');
-            this.tours = JSON.parse(data)["tours"];
-        } catch (err) {
-            console.error(err);
-            this.tours = {};
-        }
-    }
-
-    getAllTours = (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const data = fs.readFileSync(resolve(__dirname, '../tours.json'), 'utf8');
+            const data = await readFile(dataPath, 'utf8');
             res.json(JSON.parse(data));
         } catch (err) {
             console.error(err);
@@ -25,30 +13,33 @@ export default class ApiCtrl {
         }
     }
 
-    getTour = (req: Request, res: Response, next: NextFunction) => {
-        const tour = this.tours[req.params.id];
+    async getTour(req: Request, res: Response, next: NextFunction) {
+        try {
+            const data = await readFile(dataPath, 'utf8');
+            const tours = JSON.parse(data)["tours"];
+            const tour = tours[req.params.id];
 
-        if (tour) {
-            res.json(tour);
-        } else {
-            res.status(404).send('Tour not found');
+            if (tour) {
+                res.json(tour);
+            } else {
+                res.status(404).send('Tour not found');
+            }
+        } catch (err) {
+            console.error(err);
+            res.status(500).send('Error reading tours.json');
         }
     }
 
-    addTour = async (req: Request, res: Response, next: NextFunction) => {
+    async addTour(req: Request, res: Response, next: NextFunction) {
         const newTour = req.body;
         if (!newTour || !newTour.id) {
             return res.status(400).send('Invalid tour data: ' + JSON.stringify(newTour));
         }
-        try{
-            this.tours[newTour.id] = newTour;
-        } catch(err){
-            console.error(err);
-            res.status(500).send('Tour did not ');
-        }
-
         try {
-            await fs.promises.writeFile(resolve(__dirname, '../tours.json'), JSON.stringify({"tours": this.tours}, null, 2));
+            const data = await readFile(dataPath, 'utf8');
+            const tours = JSON.parse(data)["tours"];
+            tours[newTour.id] = newTour;
+            await writeFile(dataPath, JSON.stringify({ "tours": tours }, null, 2));
             res.status(201).send('Tour added successfully');
         } catch (err) {
             console.error(err);
@@ -56,23 +47,21 @@ export default class ApiCtrl {
         }
     }
 
-    deleteTour = (req: Request, res: Response, next: NextFunction) => {
+    async deleteTour(req: Request, res: Response, next: NextFunction) {
         const tourId = req.params.id;
-
-        if (!this.tours[tourId]) {
-            res.status(404).send('Tour not found');
-            return;
-        }
-
-        delete this.tours[tourId];
-
-        fs.writeFile(resolve(__dirname, '../tours.json'), JSON.stringify(this.tours, null, 2), (err) => {
-            if (err) {
-                console.error(err);
-                res.status(500).send('Error writing to tours.json');
-            } else {
-                res.status(200).send('Tour deleted successfully');
+        try {
+            const data = await readFile(dataPath, 'utf8');
+            const tours = JSON.parse(data)["tours"];
+            if (!tours[tourId]) {
+                res.status(404).send('Tour not found');
+                return;
             }
-        });
+            delete tours[tourId];
+            await writeFile(dataPath, JSON.stringify({ "tours": tours }, null, 2));
+            res.status(200).send('Tour deleted successfully');
+        } catch (err) {
+            console.error(err);
+            res.status(500).send('Error writing to tours.json');
+        }
     }
 }

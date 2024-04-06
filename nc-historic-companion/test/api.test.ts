@@ -128,7 +128,7 @@ describe('POST /tours', () => {
 
         const allToursRes = await request(app).get('/tours');
         console.log("AFTER: ", allToursRes.body)
-        expect(allToursRes.body["tours"].length).toEqual(beforeAdding.body["tours"].length + 1);
+        expect(Object.keys(allToursRes.body["tours"]).length).toEqual(Object.keys(beforeAdding.body["tours"]).length + 1);
         expect (allToursRes.body["tours"]["tour_3"]).toEqual(newTour);
     });
 });
