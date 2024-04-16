@@ -1,0 +1,6 @@
+/* src/pages/TourView/TourView.css */
+.location-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
