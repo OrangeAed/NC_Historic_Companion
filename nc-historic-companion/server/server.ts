@@ -11,6 +11,7 @@ const apiCtrl = new ApiCtrl(); // Create an instance of the API controller
 app.use(express.json());
 app.use(cors());
 app.use('/api', router);
+app.use('/public', express.static('public'));
 
 const storage: StorageEngine = diskStorage({
     destination: function (req: Request, file: Express.Multer.File, cb: (error: Error | null, destination: string) => void) {
