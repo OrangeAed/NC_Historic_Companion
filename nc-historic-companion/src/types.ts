@@ -1,6 +1,12 @@
+export interface ComponentData {
+    type: string;
+    content: string;
+}
+
 export interface LocationData {
     title: string;
     description: string;
+    components: [ComponentData];
     image: string;
     text: string;
     audio: string

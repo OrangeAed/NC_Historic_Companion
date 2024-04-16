@@ -2,6 +2,9 @@ import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getTour } from '../../api/api';
 import { LocationData } from '../../types';
+import TextComponent from "../../components/LocationComponents/TextComponent/TextComponent";
+import ImageComponent from "../../components/LocationComponents/ImageComponent/ImageComponent";
+import AudioComponent from "../../components/LocationComponents/AudioComponent/AudioComponent";
 import BackNextLocationButtons from "../../components/BackNextLocationButtons/BackNextLocationButtons";
 
 type Params = {
@@ -28,7 +31,6 @@ const TourLocation: FC = () => {
             })
             .catch(error => {
                 console.error(error);
-                // Handle the error appropriately in your application
             });
     }, [params]);
 
@@ -36,16 +38,24 @@ const TourLocation: FC = () => {
         return <div>Loading...</div>;
     }
 
+    // ...
     return (
         <div style={{ textAlign: 'center' }}>
             <h1>{data.title}</h1>
-            <img src={data.image} alt={data.title} style={{ maxWidth: '100%', maxHeight: '300px' }} />
             <p style={{ marginTop: '20px' }}>{data.description}</p>
-            <p>{data.text}</p>
-            <audio controls>
-                <source src={data.audio} type="audio/mpeg" />
-                Your browser does not support the audio element.
-            </audio>
+
+            {data.components && data.components.map((component, index) => {
+                switch (component.type) {
+                    case 'text':
+                        return <TextComponent key={index} content={component.content} />;
+                    case 'image':
+                        return <ImageComponent key={index} content={component.content} />;
+                    case 'audio':
+                        return <AudioComponent key={index} content={component.content} />;
+                    default:
+                        return null;
+                }
+            })}
             <BackNextLocationButtons tour={params.tour || "No tour provided" } location={params.location || "No Location Provided" } />
         </div>
     );

@@ -9,10 +9,20 @@
         "location_1": {
           "title": "Location 1",
           "description": "This is the first location",
-          "text": "This historic church was first constructed in 1756. It was used as a military bunker during the Civil War. The church was burned down in 1865 and rebuilt in 1878. The church was used as a school for African American children in the 1930s. The church was restored in 1952, though these walls are original. Recent scans of the ground in the church have revealed unmarked graves, which may help us learn more about life in Brunswicktown during the Civil War.",
-          "audio": "/audio/sample_audio.m4a",
-          "image": "/photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg",
-          "location": "Tour1Location1"
+          "components": [
+            {
+              "type": "image",
+              "content": "/photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg"
+            },
+            {
+              "type": "text",
+              "content": "This historic church was first constructed in 1756. It was used as a military bunker during the Civil War. The church was burned down in 1865 and rebuilt in 1878. The church was used as a school for African American children in the 1930s. The church was restored in 1952, though these walls are original. Recent scans of the ground in the church have revealed unmarked graves, which may help us learn more about life in Brunswicktown during the Civil War."
+            },
+            {
+              "type": "audio",
+              "content": "/audio/sample_audio.m4a"
+            }
+          ]
         },
         "location_2": {
           "title": "Location 2",
