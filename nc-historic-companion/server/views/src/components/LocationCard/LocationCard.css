@@ -1,0 +1,15 @@
+/* src/components/LocationCard.css */
+.location-card {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 16px;
+    margin: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    width: calc(33% - 32px); /* Subtract margins */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.location-card img {
+    max-height: 200px; /* Adjust as needed */
+    object-fit: cover; /* To maintain aspect ratio */
+}
