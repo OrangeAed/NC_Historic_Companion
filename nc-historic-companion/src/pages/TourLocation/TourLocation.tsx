@@ -40,8 +40,6 @@ const TourLocation: FC = () => {
             return '';
         }
         const locationIndex = parseInt(location.split('_')[1]);
-        const tourData = await getTour(tour);
-        const locationsLength = Object.keys(tourData.locations).length;
         // If it's the first location, return to the tour page
         if (locationIndex === 1) {
             return `/tour/${encodeURIComponent(tour)}`;
