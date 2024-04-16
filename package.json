@@ -6,6 +6,8 @@
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
     "ts-node": "^10.9.2"
   }
 }
