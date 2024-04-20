@@ -1,22 +1,16 @@
-// src/components/TourCard.tsx
+// src/components/TourCard/TourCard.tsx
 import React from 'react';
-import { TourData } from '../../../../../src/types';
+import FrontPage from '../../../../../src/pages/FrontPage/FrontPage'; // Import the FrontPage component
 import './TourCard.css'; // Import the CSS file
 
-
-interface TourCardProps {
-    tour: TourData;
-}
+type TourCardProps = {
+    tour: string; // Change the prop type to string
+};
 
 const TourCard: React.FC<TourCardProps> = ({ tour }) => {
-    // Adjust the image path based on your directory structure
-    const imagePath = 'http://localhost:5001' + tour.image;
-
     return (
         <div className="tour-card">
-            <h2>{tour.title}</h2>
-            <img src={imagePath} alt={tour.title} style={{width: '100%', height: 'auto'}}/>
-            <p>{tour.description}</p>
+            <FrontPage tour={tour} /> {/* Pass the tour name to the FrontPage component */}
         </div>
     );
 };

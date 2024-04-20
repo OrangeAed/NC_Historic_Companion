@@ -28,7 +28,7 @@ const MainView: React.FC = () => {
             <div className="tour-list">
                 {Object.entries(data!).map(([tourId, tour]) => (
                     <Link to={`/tour/${tourId}`} key={tourId}>
-                        <TourCard tour={tour} />
+                        <TourCard tour={tourId} />
                     </Link>
                 ))}
             </div>

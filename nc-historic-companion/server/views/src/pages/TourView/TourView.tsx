@@ -30,22 +30,31 @@ const TourView: React.FC = () => {
         return <div>Loading...</div>;
     }
 
+    // Convert the locations object into an array
+    const locationsArray = Object.values(data?.locations || {});
+
     return (
-        <div className="location-list">
+        <div >
             <div>
-                <h1>Locations for Tour {tourId}</h1>
+                <h1>Locations for {tourId}</h1>
             </div>
-            {data && (
+            <div>
                 <div>
-                    <TourCard tour={data} />
+                {locationsArray.length > 0 && (
+                    <div>
+                        <TourCard tour={tourId} />
+                    </div>
+                )}
                 </div>
-            )}
-            {data && Object.values(data.locations).slice(1).map((location, index) => (
-                <div key={index}>
-                    <h2>Tour {tourId} Location {index + 2}</h2>
-                    <LocationCard location={location} />
+                <div>
+                    {locationsArray.map((location, index) => (
+                    <div key={index}>
+                        <h2>Tour {tourId} Location {index + 1}</h2>
+                        <LocationCard location={location} />
+                    </div>
+                    ))}
                 </div>
-            ))}
+            </div>
         </div>
     );
 };

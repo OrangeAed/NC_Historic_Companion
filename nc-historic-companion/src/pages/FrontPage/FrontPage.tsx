@@ -1,43 +1,24 @@
+// src/pages/FrontPage/FrontPage.tsx
 import { FC, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './FrontPage.css';
 import {getTour} from "../../api/api.ts";
-
-interface LocationData {
-    title: string;
-    description: string;
-    image: string;
-}
-
-interface TourData {
-    title: string;
-    description: string;
-    image: string;
-    locations: Record<string, LocationData>;
-}
+import { TourData, LocationData } from "../../types"; // Import the types
 
 type Params = {
     tour: string;
 };
 
-const FrontPage: FC = () => {
+interface FrontPageProps {
+    tour?: string;
+}
+
+const FrontPage: FC<FrontPageProps> = ({ tour: propTour }) => {
     const navigate = useNavigate();
-    const { tour } = useParams<Params>();
+    const { tour: urlTour } = useParams<Params>();
     const [data, setData] = useState<TourData | null>(null);
 
-    // useEffect(() => {
-    //     fetch('/data/tours.json')
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             if (!tour) {
-    //                 console.error('Tour is not defined');
-    //                 return;
-    //             }
-    //
-    //             const tourData = data.tours[tour];
-    //             setData(tourData);
-    //         });
-    // }, [tour]);
+    const tour = propTour || urlTour;
 
     useEffect(() => {
         if (!tour) {
@@ -53,7 +34,6 @@ const FrontPage: FC = () => {
         if (data) {
             const firstLocationKey = Object.keys(data.locations)[0];
             navigate(`/tour/${tour}/${firstLocationKey}`);
-
         }
     };
 
