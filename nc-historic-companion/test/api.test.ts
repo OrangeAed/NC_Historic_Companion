@@ -28,7 +28,7 @@ beforeAll(() => {
 afterAll(done => {
     server.close(done);
 });
-beforeEach(async () => {
+afterEach(async () => {
     // Reset the data after each test
     await fs.promises.writeFile(path.resolve(__dirname, '../server/tours.json'), originalData);
 });
@@ -46,6 +46,16 @@ const generateNotFoundText = (s: string) => {
     notFoundText += "</html>\n";
     return notFoundText;
 }
+
+describe('GET /tours', () => {
+    it('should return the contents of tours.json', async () => {
+        const res = await request(app).get('/tours');
+
+        expect(res.status).toBe(200);
+        expect(res.body).toBeInstanceOf(Object);
+        expect(res.body).toEqual(TourData);
+    });
+});
 
 describe('GET /tours/:id', () => {
     it('should return the tour with the given id', async () => {
@@ -150,12 +160,3 @@ describe('DELETE /tours/:id', () => {
         expect(finalLength).toBe(initialLength - 1);    });
 });
 
-describe('GET /tours', () => {
-    it('should return the contents of tours.json', async () => {
-        const res = await request(app).get('/tours');
-
-        expect(res.status).toBe(200);
-        expect(res.body).toBeInstanceOf(Object);
-        expect(res.body).toEqual(TourData);
-    });
-});
