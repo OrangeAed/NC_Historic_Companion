@@ -1,12 +1,18 @@
-// ImageComponent.tsx
+// src/components/LocationComponents/ImageComponent/ImageComponent.tsx
 import React from 'react';
+import { ComponentData } from '../../../types.ts'
 
-type ImageComponentProps = {
-    content: string;
-};
+interface ImageComponentProps {
+    data: ComponentData;
+}
 
-const ImageComponent: React.FC<ImageComponentProps> = ({ content }) => {
-    return <img src={content} alt="content" />;
+const ImageComponent: React.FC<ImageComponentProps> = ({ data }) => {
+    return (
+        <div>
+            <img src={data.content} alt={data.caption} />
+            {data.caption && <p>{data.caption}</p>}
+        </div>
+    );
 };
 
 export default ImageComponent;

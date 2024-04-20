@@ -12,7 +12,8 @@
           "components": [
             {
               "type": "image",
-              "content": "/photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg"
+              "content": "/photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg",
+              "caption": "Image caption for Location 1"
             },
             {
               "type": "text",
@@ -27,43 +28,23 @@
         "location_2": {
           "title": "Location 2",
           "description": "This is a real cannon used to defend Fort Anderson during the Civil War. It was discovered poking out of the water in the Cape Fear River in 2017. The cannon was restored and now belongs to the Brunswick Town/Fort Anderson State Historic Site. Notice the insignia on the top of the cannon. This insignia was used to identify the cannon as belonging to the Confederate Army, with the smaller symbols specifying the details of its production.",
-          "text": "This is the second location",
-          "audio": "/audio/sample_audio.m4a",
-          "image": "/photos/D_2020_06_09_IMG2595_BrunswickTown_Fort_Anderson_Historic_Site_Singing_On_The_Land_300_LF_4.jpg",
-          "location": "Tour1Location2"
+          "components": [
+            {
+              "type": "image",
+              "content": "/photos/D_2020_06_09_IMG2595_BrunswickTown_Fort_Anderson_Historic_Site_Singing_On_The_Land_300_LF_4.jpg",
+              "caption": "Image caption for Location 2"
+            },
+            {
+              "type": "text",
+              "content": "This is the second location"
+            },
+            {
+              "type": "audio",
+              "content": "/audio/sample_audio.m4a"
+            }
+          ]
         }
       }
-    },
-    "tour_2": {
-      "title": "Tour 2",
-      "description": "This is the second tour",
-      "image": "/photos/D_2020_06_09_7985_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Canon_300_LF.jpg",
-      "audio": "../sample_audio.m4a",
-      "locations": {
-        "location_1": {
-          "title": "Location 1",
-          "description": "This is the first location",
-          "text": "This is the first location",
-          "audio": "/audio/sample_audio.m4a",
-          "image": "Tour2Location1",
-          "location": "Tour2Location1"
-        },
-        "location_2": {
-          "title": "Location 2",
-          "description": "This is the second location",
-          "text": "This is the second location",
-          "audio": "../sample_audio.m4a",
-          "image": "Tour2Location2",
-          "location": "Tour2Location2"
-        }
-      }
-    },
-    "tour_3": {
-      "title": "tour_3",
-      "description": "desc",
-      "image": "/photos/D_2020_06_09_IMG2595_BrunswickTown_Fort_Anderson_Historic_Site_Singing_On_The_Land_300_LF_4.jpg",
-      "audio": "path/to/audio/tour_3.jpg",
-      "locations": {}
     }
   }
 }
