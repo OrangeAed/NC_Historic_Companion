@@ -1,12 +1,15 @@
-/* src/components/LocationCard.css */
+/* src/components/LocationCard/LocationCard.css */
 .location-card {
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 16px;
     margin: 16px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-    width: calc(33% - 32px); /* Subtract margins */
+    width: 375px; /* Set the width to the size of a smartphone screen */
+    height: 667px; /* Set the height to the size of a smartphone screen */
     box-sizing: border-box; /* Include padding and border in element's total width and height */
+    overflow: auto; /* Allow scrolling if the content exceeds the size of the card */
+    word-wrap: break-word; /* Ensure that long words do not overflow the card */
 }
 
 .location-card img {

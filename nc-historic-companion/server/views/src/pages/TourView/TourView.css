@@ -1,5 +1,5 @@
 /* src/pages/TourView/TourView.css */
-.location-list {
+.location-cards-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

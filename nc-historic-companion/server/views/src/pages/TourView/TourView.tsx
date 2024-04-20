@@ -40,18 +40,18 @@ const TourView: React.FC = () => {
             </div>
             <div>
                 <div>
-                {locationsArray.length > 0 && (
-                    <div>
-                        <TourCard tour={tourId} />
-                    </div>
-                )}
+                    {locationsArray.length > 0 && (
+                        <div>
+                            <TourCard tour={tourId} />
+                        </div>
+                    )}
                 </div>
-                <div>
+                <div className="location-cards-container"> {/* Add a container div with a CSS class */}
                     {locationsArray.map((location, index) => (
-                    <div key={index}>
-                        <h2>Tour {tourId} Location {index + 1}</h2>
-                        <LocationCard location={location} />
-                    </div>
+                        <div key={index}>
+                            <h2>Tour {tourId} Location {index + 1}</h2>
+                            <LocationCard location={location} />
+                        </div>
                     ))}
                 </div>
             </div>
