@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import { addTour } from "../../../../../src/api/api";
 import { TourData } from "../../../../../src/types.ts";
+import './CreateTour.css';
 
 const CreateTour: FC = () => {
     const [title, setTitle] = useState("");
@@ -11,32 +12,35 @@ const CreateTour: FC = () => {
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
-        if (!image) {
-            alert("Please upload an image");
-            return;
-        }
+        // if (!image) {
+        //     alert("Please upload an image");
+        //     return;
+        // }
+        //
+        // const formData = new FormData();
+        // formData.append("title", title);
+        // formData.append("description", description);
+        // if (image) {
+        //     formData.append("image", image);
+        // }
+        // if (audio) {
+        //     formData.append("audio", audio);
+        // }
+        //
+        // const response = await addTour(formData);
+        // if (response.status === 201) {
+        //     alert("Tour added successfully");
+        // } else {
+        //     alert("Error adding tour");
 
-        const tourData: TourData = {
-            title: title,
-            description: description,
-            id: "", // You might not have an ID yet, so you can leave it empty for now
-            // You can't include the image file in the TourData object
-            // because TourData expects a string for the image property, not a File object.
-            // You might include a placeholder string for now, or leave it undefined.
+        const newTour: TourData = {
+            title,
+            description,
             image: "",
-            audio: "",
-            locations: {}
-            // Other properties of TourData...
+            locations: {},
+            audio: ""
         };
-
-        const formData = new FormData();
-        formData.append("title", title);
-        formData.append("description", description);
-        formData.append("image", image);
-        formData.append("audio", audio);
-
-
-        const response = await addTour(formData);
+        const response = await addTour(newTour);
         if (response.status === 201) {
             alert("Tour added successfully");
         } else {
@@ -57,7 +61,7 @@ const CreateTour: FC = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="create-tour-form">
             <label>
                 Title:
                 <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required/>

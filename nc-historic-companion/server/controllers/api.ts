@@ -34,6 +34,7 @@ export default class ApiCtrl {
 
     addTour(req: Request, res: Response, next: NextFunction) {
         const newTour = req.body;
+        console.log(newTour)
         if (!newTour || !newTour.id) {
             return res.status(400).send('Invalid tour data: ' + JSON.stringify(newTour));
         }
