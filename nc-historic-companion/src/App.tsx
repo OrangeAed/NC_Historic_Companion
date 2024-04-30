@@ -3,7 +3,7 @@ import TourLocation from './pages/TourLocation/TourLocation.tsx';
 import FrontPage from "./pages/FrontPage/FrontPage.tsx";
 import TourList from './pages/TourList/TourList.tsx';
 
-import './styles.css'
+import '../global.css'; // Import the global CSS file
 
 function App() {
     return (

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync } from 'fs';
+import path from "path";
 
 const dataPath = 'server/tours.json';
 
@@ -35,6 +36,22 @@ export default class ApiCtrl {
     addTour(req: Request, res: Response, next: NextFunction) {
         const newTour = req.body;
         console.log(newTour)
+
+        const base64Image = newTour.image;
+        const imageBuffer = Buffer.from(base64Image, 'base64');
+
+        const imageFilename = `${newTour.id}.jpg`;
+        const imagePath = path.join(__dirname, '..', 'public', 'photos', imageFilename);
+        console.log(imagePath)
+        console.log("test")
+        mkdirSync(path.dirname(imagePath), { recursive: true });
+
+        // Write the image file to the public/photos directory
+        writeFileSync(imagePath, imageBuffer);
+
+        // Update the image property to the filename
+        newTour.image = imageFilename;
+
         if (!newTour){
             return res.status(400).send(JSON.stringify(newTour));
         }
@@ -42,11 +59,13 @@ export default class ApiCtrl {
             return res.status(400).send('Invalid tour data: ' + JSON.stringify(newTour));
         }
         try {
+
+
             const data = readFileSync(dataPath, 'utf8');
             const tours = JSON.parse(data)["tours"];
             tours[newTour.id] = newTour;
             writeFileSync(dataPath, JSON.stringify({ "tours": tours }, null, 2));
-            res.status(201).send('Tour added successfully');
+            res.status(201).send(imagePath);
         } catch (err) {
             console.error(err);
             res.status(500).send('Error writing to tours.json');

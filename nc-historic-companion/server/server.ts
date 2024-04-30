@@ -13,24 +13,18 @@ app.use(cors());
 app.use('/api', router);
 app.use('/public', express.static('public'));
 
-const storage: StorageEngine = diskStorage({
-    destination: function (req: Request, file: Express.Multer.File, cb: (error: Error | null, destination: string) => void) {
-        if (file.mimetype === 'audio/mpeg') {
-            cb(null, 'public/audio');
-        } else if (file.mimetype.startsWith('image/')) {
-            cb(null, 'public/photos');
-        } else {
-            cb(new Error('This file type is not supported'), '');
-        }
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './public/photos/');
     },
-    filename: function (req: Request, file: Express.Multer.File, cb: (error: Error | null, filename: string) => void) {
+    filename: function(req, file, cb) {
         cb(null, file.originalname);
     }
 });
 
 const upload = multer({ storage: storage });
 
-app.post('/api/tours', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'audio', maxCount: 1 }]), async (req: Request, res: Response) => {
+app.post('/api/tours', upload.single('image'), (req: Request, res: Response) => {
     // req.files is an object where fieldname is the key and the value is an array of files
     // You can access uploaded files with req.files['fieldname']
     // Your existing code to handle the POST request goes here

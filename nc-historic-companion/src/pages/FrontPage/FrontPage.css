@@ -11,6 +11,7 @@
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 1rem;
+    color: #000000; /* Black text */
 }
 
 .image {
@@ -23,13 +24,14 @@
 .description {
     font-size: 1.2rem;
     margin-bottom: 2rem;
+    color: #000000; /* Black text */
 }
 
 .start-button {
     padding: 1rem 2rem;
     font-size: 1.2rem;
-    color: #fff;
-    background-color: #007bff;
+    color: #FFFFFF; /* White text */
+    background-color: #808080; /* Dark grey background */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -37,5 +39,5 @@
 }
 
 .start-button:hover {
-    background-color: #0056b3;
+    background-color: #666666; /* Even darker grey on hover */
 }

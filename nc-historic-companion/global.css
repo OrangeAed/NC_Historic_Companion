@@ -1,0 +1,48 @@
+/* global.css */
+
+@import url("https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap");
+
+* {
+    font-family: "Saira Semi Condensed", sans-serif;
+    transition: all 0.5s ease;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #dfdfdf;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Display two cards in a row */
+    gap: 20px; /* Space between cards */
+    padding: 0 16px;
+}
+
+.card {
+    margin: 20px;
+    border: 1px solid #333; /* Dark grey border, 2px wide */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Space between content and border */
+}
+
+.card-title {
+    color: blue; /* Make the tour titles blue */
+}
+
+.card-description {
+    color: black; /* Make the tour descriptions black */
+}
+
+.card-image {
+    width: 100%; /* Adjust as needed */
+    height: 100%; /* Adjust as needed */
+    object-fit: cover; /* This will ensure that your images cover the whole area without distortion */
+}
+
+/* Add more global styles as needed */
