@@ -15,13 +15,13 @@ const TourList: FC = () => {
     }
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+        <div className="container">
             {Object.entries(data).map(([tourId, tour]) => (
                 <Link key={tourId} to={`/tour/${tourId}`}>
-                    <div style={{ border: '1px solid #ccc', padding: '10px', margin: '10px', display: 'inline-block' }}>
-                        <img src={tour.image} alt={tour.title} style={{ width: '100%', height: 'auto' }} />
-                        <h2>{tour.title}</h2>
-                        <p>{tour.description}</p>
+                    <div className="card">
+                        <h2 className="card-title">{tour.title}</h2>
+                        <img src={tour.image} alt={tour.title} className="card-image" />
+                        <p className="card-description">{tour.description}</p>
                     </div>
                 </Link>
             ))}

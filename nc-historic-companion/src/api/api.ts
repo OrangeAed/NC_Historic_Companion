@@ -1,4 +1,5 @@
 import {TourData, LocationData} from "../types.ts";
+import {useState} from "react";
 
 
 const apiUrl = 'http://localhost:5000/api';
@@ -14,15 +15,30 @@ export const getTour = async (id: string): Promise<TourData> => {
     return response.json();
 }
 
-export const addTour = async (tour: TourData): Promise<Response> => {
-    console.log('tour:', tour)
-    return await fetch(`${apiUrl}/tours`, {
-        method: 'POST',
+export const addTour = async (tour: TourData): Promise<void> => {
+    // console.log('tour:', tour)
+    // return await fetch(`${apiUrl}/tours`, {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(tour),
+    // });
+    const tourData = {
+        title: tour.title,
+        description: tour.description,
+        id: tour.title.toLowerCase().replace(/\s/g, '-'),
+    }
+    fetch(`${apiUrl}/tours`, {
+        method: "POST",
+        body: JSON.stringify(tourData),
         headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json; charset=UTF-8"
         },
-        body: JSON.stringify(tour),
-    });
+    })
+    .then(response => response.json())
+    .then(json => console.log(json));
+
 }
 
 export const deleteTour = async (id: string): Promise<void> => {

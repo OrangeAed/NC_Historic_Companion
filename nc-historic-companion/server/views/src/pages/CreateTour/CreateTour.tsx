@@ -41,11 +41,11 @@ const CreateTour: FC = () => {
             audio: ""
         };
         const response = await addTour(newTour);
-        if (response.status === 201) {
-            alert("Tour added successfully");
-        } else {
-            alert("Error adding tour");
-        }
+        // if (response.status === 201) {
+        //     alert("Tour added successfully");
+        // } else {
+        //     alert("Error adding tour");
+        // }
     };
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {

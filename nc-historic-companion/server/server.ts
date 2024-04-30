@@ -34,6 +34,7 @@ app.post('/api/tours', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'a
     // req.files is an object where fieldname is the key and the value is an array of files
     // You can access uploaded files with req.files['fieldname']
     // Your existing code to handle the POST request goes here
+
 });
 
 app.use(function(req: Request, res: Response, next: NextFunction) {
