@@ -1,0 +1,14 @@
+.BackNextLocationButtons button {
+    margin: 0 20px; /* Add horizontal margin between buttons */
+}
+
+.next-back-button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    color: #FFFFFF;
+    background-color: #808080;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}

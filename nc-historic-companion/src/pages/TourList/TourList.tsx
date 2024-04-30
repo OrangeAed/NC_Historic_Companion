@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllTours } from "../../api/api.ts";
-import {TourData, LocationData} from "../../types.ts";
+import {TourData} from "../../types.ts";
 
 const TourList: FC = () => {
     const [data, setData] = useState<Record<string, TourData> | null>(null);

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getTour } from '../../api/api';
+import './BackNextLocationButtons.css';
 
 const BackNextLocationButtons = ({ tour, location }: { tour: string, location: string }) => {
     const [previousLocationUrl, setPreviousLocationUrl] = useState<string>('');
@@ -43,12 +44,12 @@ const BackNextLocationButtons = ({ tour, location }: { tour: string, location: s
     }, [tour, location]);
 
     return (
-        <div>
+        <div className="BackNextLocationButtons">
             <a href={previousLocationUrl}>
-                <button>Previous</button>
+                <button className="next-back-button">Previous</button>
             </a>
             <a href={nextLocationUrl}>
-                <button>Next</button>
+                <button className="next-back-button">Next</button>
             </a>
         </div>
     )

@@ -37,6 +37,10 @@ const FrontPage: FC<FrontPageProps> = ({ tour: propTour }) => {
         }
     };
 
+    const goToTourList = () => {
+        navigate('/');
+    };
+
     if (!data) {
         return <div>Loading...</div>;
     }
@@ -44,11 +48,15 @@ const FrontPage: FC<FrontPageProps> = ({ tour: propTour }) => {
     return (
         <div className="front-page">
             <h1 className="title">{data.title}</h1>
-            <img className="image" src={data.image} alt={data.title} style={{ width: '100%', height: 'auto' }}/>
+            <img className="image" src={data.image} alt={data.title} style={{width: '100%', height: 'auto'}}/>
             <p className="description">{data.description}</p>
-            <button className="start-button" onClick={handleButtonClick}>
-                Start Tour
-            </button>
+            <div className="button-container">
+                <button className="button-spacing grey-button" onClick={goToTourList}>Back to Tour List</button>
+
+                <button className="button-spacing grey-button" onClick={handleButtonClick}>
+                    Start Tour
+                </button>
+            </div>
         </div>
     );
 };

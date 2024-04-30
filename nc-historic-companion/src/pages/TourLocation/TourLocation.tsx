@@ -6,6 +6,7 @@ import TextComponent from "../../components/LocationComponents/TextComponent/Tex
 import ImageComponent from "../../components/LocationComponents/ImageComponent/ImageComponent";
 import AudioComponent from "../../components/LocationComponents/AudioComponent/AudioComponent";
 import BackNextLocationButtons from "../../components/BackNextLocationButtons/BackNextLocationButtons";
+import './TourLocation.css';
 
 type Params = {
     tour: string;
@@ -52,7 +53,7 @@ const TourLocation: FC<TourLocationProps> = ({ locationData }) => {
     }
 
     return (
-        <div style={{ textAlign: 'center' }}>
+        <div className="TourLocation" style={{ textAlign: 'center' }}>
             <h1>{data.title}</h1>
             <p style={{ marginTop: '20px' }}>{data.description}</p>
 

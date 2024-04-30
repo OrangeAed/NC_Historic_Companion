@@ -41,3 +41,28 @@
 .start-button:hover {
     background-color: #666666; /* Even darker grey on hover */
 }
+
+.button-spacing {
+    margin: 10px; /* Adjust as needed */
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Adjust as needed */
+    gap: 20px; /* Adjust as needed */
+}
+
+.grey-button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    color: #FFFFFF; /* White text */
+    background-color: #808080; /* Dark grey background */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.grey-button:hover {
+    background-color: #666666; /* Even darker grey on hover */
+}
