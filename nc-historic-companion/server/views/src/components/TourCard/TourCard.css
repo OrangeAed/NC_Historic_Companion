@@ -1,14 +1,14 @@
 /* src/components/TourCard/TourCard.css */
 .tour-card {
-    width: 300px; /* Adjust as needed */
-    height: 400px; /* Adjust as needed */
+    width: 500px; /* Adjust as needed */
+    height: 600px; /* Adjust as needed */
     padding: 20px;
     margin: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     box-sizing: border-box;
-    background-color: #333; /* Dark background color */
+    /*background-color: #333; !* Dark background color *!*/
     color: #fff; /* Light text color */
 }
 

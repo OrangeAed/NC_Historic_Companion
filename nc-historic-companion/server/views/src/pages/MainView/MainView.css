@@ -1,6 +1,64 @@
 /* src/pages/MainView/MainView.css */
+.main-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #000000; /* Black text */
+    text-align: center; /* Add this line */
+
+}
+
 .tour-list {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
 }
+
+.tour-list > * {
+    box-sizing: border-box;
+}
+
+/* src/pages/MainView/MainView.css */
+
+.create-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 500px; /* Adjust as needed */
+    height: 600px; /* Adjust as needed */
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    color: #000000; /* Black text color */
+    font-size: 2rem;
+    cursor: pointer;
+
+}
+
+
+
+.create-card:hover {
+    background-color: #f0f0f0; /* Light grey background on hover */
+}
+
+
+.create-card .circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #0000FF; /* Blue background */
+    color: #fff; /* White text color */
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+
+

@@ -7,6 +7,10 @@
     transition: all 0.5s ease;
 }
 
+html {
+    min-height: 100vh;
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -14,7 +18,8 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    background: #dfdfdf;
+    background-color: #dfdfdf;
+
 }
 
 .container {
@@ -29,6 +34,7 @@ body {
     border: 1px solid #333; /* Dark grey border, 2px wide */
     border-radius: 5px; /* Rounded corners */
     padding: 10px; /* Space between content and border */
+
 }
 
 .card-title {

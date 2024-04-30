@@ -42,7 +42,7 @@ const TourView: React.FC = () => {
                 <div>
                     {locationsArray.length > 0 && (
                         <div>
-                            <TourCard tour={tourId} />
+                            {tourId && <TourCard tour={tourId} />}
                         </div>
                     )}
                 </div>
