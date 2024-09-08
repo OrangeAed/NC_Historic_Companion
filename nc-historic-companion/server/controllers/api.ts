@@ -25,7 +25,7 @@ export default class ApiCtrl {
             if (tour) {
                 res.json(tour);
             } else {
-                res.status(404).send('Tour not found');
+                res.status(404).send({error: 'Tour not found'});
             }
         } catch (err) {
             console.error(err);
@@ -87,6 +87,26 @@ export default class ApiCtrl {
         } catch (err) {
             console.error(err);
             res.status(500).send('Error writing to tours.json');
+        }
+    }
+
+    uploadImage(req: Request, res: Response, next: NextFunction) {
+        if (!req.file) {
+            return res.status(400).send('No file uploaded.');
+        }
+        console.log(req.file);
+
+        const imagePath = path.join(__dirname, '..', 'public', 'photos', req.file.filename);
+        mkdirSync(path.dirname(imagePath), { recursive: true });
+        console.log("imagePath", imagePath);
+        try {
+            writeFileSync(imagePath, req.file.buffer);
+            console.log("success")
+            return res.status(201).send('File uploaded successfully.');
+        } catch (err) {
+            console.error(err);
+            console.log("error")
+            return res.status(500).send('Error saving the file.');
         }
     }
 }

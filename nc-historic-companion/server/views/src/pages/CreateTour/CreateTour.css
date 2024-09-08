@@ -131,6 +131,10 @@ button:hover {
     font-size: 20px;
 }
 
+.filename {
+    color: #000;
+}
+
 @media (max-width: 425px) {
     form {
         width: 100%;

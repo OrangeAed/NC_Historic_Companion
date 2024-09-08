@@ -2,7 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from "cors";
 import router from './routes/api.ts'; // Import router
 import ApiCtrl from './controllers/api.ts'; // Import API methods
-import multer, { diskStorage, StorageEngine } from 'multer';
+import multer from 'multer';
 
 const app = express();
 const port: string | number = process.env.PORT || 5000; // Change this to the port your client is running on
@@ -24,12 +24,19 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-app.post('/api/tours', upload.single('image'), (req: Request, res: Response) => {
-    // req.files is an object where fieldname is the key and the value is an array of files
-    // You can access uploaded files with req.files['fieldname']
-    // Your existing code to handle the POST request goes here
-
+app.post('/api/upload', upload.single('image'), (req: Request, res: Response) => {
+    if (!req.file) {
+        return res.status(400).send('No file uploaded.');
+    }
+    res.status(201).send('File uploaded successfully.');
 });
+
+// app.post('/api/tours', upload.single('image'), (req: Request, res: Response) => {
+//     // req.files is an object where fieldname is the key and the value is an array of files
+//     // You can access uploaded files with req.files['fieldname']
+//     // Your existing code to handle the POST request goes here
+//
+// });
 
 app.use(function(req: Request, res: Response, next: NextFunction) {
     res.setHeader("Access-Control-Allow-Origin", "*");

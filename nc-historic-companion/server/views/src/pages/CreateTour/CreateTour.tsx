@@ -84,13 +84,13 @@ const CreateTour: FC = () => {
                     <label htmlFor="message">
                         <i className="far fa-file-image"></i>Image
                     </label>
-                    <input type="file" onChange={handleImageChange} ></input>
+                    <input className="filename" type="file" onChange={handleImageChange} ></input>
                 </div>
                 <div className="field" tabIndex={4}>
                     <label htmlFor="file">
                         <i className="fas fa-file-audio"></i> Audio File
                     </label>
-                    <input type="file" onChange={handleAudioChange} ></input>
+                    <input className="filename" type="file" onChange={handleAudioChange} ></input>
 
                 </div>
                 <button type="submit" onClick={handleSubmit}>Add Tour</button>
