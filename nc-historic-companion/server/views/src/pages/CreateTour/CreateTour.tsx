@@ -1,67 +1,45 @@
 import React, { FC, useState } from 'react';
-import { addTour } from "../../../../../src/api/api";
-import { TourData } from "../../../../../src/types.ts";
+import { addTour } from "../../../../api/api";
 import './CreateTour.css';
 
 const CreateTour: FC = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [image, setImage] = useState<File | null>(null);
-    const [imageName, setImageName] = useState<string | null>(null);
-    const [audio, setAudio] = useState<File | null>(null);
-    const [audioName, setAudioName] = useState<string | null>(null);
+    const [image, setImage] = useState<File | undefined>(undefined);
+    // const [imageName, setImageName] = useState<string | null>(null);
+    const [audio, setAudio] = useState<File | undefined>(undefined);
+    // const [audioName, setAudioName] = useState<string | null>(null);
 
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-
-        // if (!image) {
-        //     alert("Please upload an image");
-        //     return;
-        // }
-        //
-        // const formData = new FormData();
-        // formData.append("title", title);
-        // formData.append("description", description);
-        // if (image) {
-        //     formData.append("image", image);
-        // }
-        // if (audio) {
-        //     formData.append("audio", audio);
-        // }
-        //
-        // const response = await addTour(formData);
-        // if (response.status === 201) {
-        //     alert("Tour added successfully");
-        // } else {
-        //     alert("Error adding tour");
-
-        const newTour: TourData = {
-            title,
-            description,
-            image: imageName || "",
-            locations: {},
-            audio: audioName || "",
-        };
-        const response = await addTour(newTour);
-        // if (response.status === 201) {
-        //     alert("Tour added successfully");
-        // } else {
-        //     alert("Error adding tour");
-        // }
-    };
+        try {
+            const result = await addTour({
+                id: title,
+                title: title,
+                description: description,
+                image: image,
+                audio: audio,
+                locations: {}
+            });
+            console.log('Tour added successfully', result);
+        }
+        catch (error) {
+            console.error('Error adding tour', error);
+        }
+    }
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files) {
             setImage(event.target.files[0]);
-            setImageName(event.target.files[0].name);
+            // setImageName(event.target.files[0].name);
         }
     };
 
     const handleAudioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files) {
             setAudio(event.target.files[0]);
-            setAudioName(event.target.files[0].name);
+            // setAudioName(event.target.files[0].name);
         }
     };
 

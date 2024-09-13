@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { readFileSync, writeFileSync } from 'fs';
 import { TourData } from '../models/tour';
 import { TourLocationData } from '../models/tourLocation';
+import {LocationComponentData} from "../models/locationComponent.ts";
 
 const dataPath = './server/tours.json';
 
@@ -85,24 +86,31 @@ export const deleteTour = (req: Request, res: Response) => {
 export const addTourLocation = (req: Request, res: Response) => {
     const tourId = req.params.id;
     const files = req.files as { [fieldname: string]: Express.Multer.File[] } | undefined;
+    const components: LocationComponentData[] = [];
+    if (req.body.image){
+        components.push({
+            type: 'image',
+            content: req.body.image
+        });
+    }
+    if (req.body.audio){
+        components.push({
+            type: 'audio',
+            content: req.body.audio
+        });
+    }
+    if (req.body.text){
+        components.push({
+            type: 'text',
+            content: req.body.text
+        });
+    }
+
 
     const newLocation: TourLocationData = {
         title: req.body.title,
         description: req.body.description,
-        components: [
-            {
-                type: 'image',
-                content: files && files['image'] ? `/public/photos/${files['image'][0].filename}` : ''
-            },
-            {
-                type: 'audio',
-                content: files && files['audio'] ? `/public/audio/${files['audio'][0].filename}` : ''
-            },
-            {
-                type: 'text',
-                content: req.body.text
-            }
-        ]
+        components: components
     };
 
     if (!newLocation.title) {
