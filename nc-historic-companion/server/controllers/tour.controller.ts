@@ -35,12 +35,19 @@ export const getTour = (req: Request, res: Response) => {
 }
 
 export const addTour = (req: Request, res: Response) => {
-    const newTour: TourData = req.body;
+    const files = req.files as { [fieldname: string]: Express.Multer.File[] } | undefined;
 
-    if (!newTour) {
-        return res.status(400).send('No body data');
-    } else if (!newTour.id) {
-        return res.status(400).send(req);
+    const newTour: TourData = {
+        id: req.body.id,
+        title: req.body.title,
+        description: req.body.description,
+        image: files && files['image'] ? `/public/photos/${files['image'][0].filename}` : '',
+        audio: files && files['audio'] ? `/public/audio/${files['audio'][0].filename}` : '',
+        locations: {}
+    };
+
+    if (!newTour.id) {
+        return res.status(400).send('Invalid tour data');
     }
 
     try {
@@ -57,7 +64,6 @@ export const addTour = (req: Request, res: Response) => {
         res.status(500).send('Error writing to tours.json');
     }
 };
-
 export const deleteTour = (req: Request, res: Response) => {
     const tourId = req.params.id;
 
@@ -78,11 +84,28 @@ export const deleteTour = (req: Request, res: Response) => {
 
 export const addTourLocation = (req: Request, res: Response) => {
     const tourId = req.params.id;
-    const newLocation: TourLocationData = req.body;
+    const files = req.files as { [fieldname: string]: Express.Multer.File[] } | undefined;
 
-    if (!newLocation) {
-        return res.status(400).send('No body data');
-    } else if (!newLocation.title) {
+    const newLocation: TourLocationData = {
+        title: req.body.title,
+        description: req.body.description,
+        components: [
+            {
+                type: 'image',
+                content: files && files['image'] ? `/public/photos/${files['image'][0].filename}` : ''
+            },
+            {
+                type: 'audio',
+                content: files && files['audio'] ? `/public/audio/${files['audio'][0].filename}` : ''
+            },
+            {
+                type: 'text',
+                content: req.body.text
+            }
+        ]
+    };
+
+    if (!newLocation.title) {
         return res.status(400).send('Invalid location data');
     }
 
