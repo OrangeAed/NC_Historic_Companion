@@ -1,33 +1,25 @@
 import { Router, Request, Response } from 'express';
 import { Tour } from '../model/tour';
-import { locationList } from "./location.controller.ts";
+import {connection} from "../config/db.ts";
+import {PoolConnection, QueryError} from "mysql2";
 
-const tourList: Tour[] = [
-    {
-        title: 'Tour 1',
-        description: 'This is tour 1',
-        image: 'tour1.jpg',
-        audio: 'tour1.mp3',
-        locations: locationList
-    },
-    {
-        title: 'Tour 2',
-        description: 'This is tour 2',
-        image: 'tour2.jpg',
-        audio: 'tour2.mp3',
-        locations: locationList
-    },
-    {
-        title: 'Tour 3',
-        description: 'This is tour 3',
-        image: 'tour3.jpg',
-        audio: 'tour3.mp3',
-        locations: locationList
-    }
-]
-
-const getAllTours = (req: Request, res: Response) => {
-    res.status(200).send(tourList);
+const getAll = (req: Request, res: Response) => {
+    connection.getConnection((err: QueryError, conn: PoolConnection) => {
+        conn.query("select * from product", (err, resultSet: Tour[]) => {
+            conn.release();
+            if (err) {
+                res.status(500).send({
+                    message: 'INTERNAL SERVER ERROR',
+                    result: null
+                });
+            } else {
+                res.status(200).send({
+                    message: 'OK',
+                    result: resultSet
+                });
+            }
+        })
+    });
 }
 
-export default { getAllTours }
+export default { getAll }

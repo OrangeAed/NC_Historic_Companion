@@ -1,10 +1,10 @@
 import { Router } from "express";
-import locationController from "../controller/location.controller.ts";
+import tourLocationController from "../controller/tourLocation.controller.ts";
 import tourController from "../controller/tour.controller.ts";
 
 const routes = Router();
 
-routes.use('/locations', locationController);
+routes.use('/tourLocations', tourLocationController);
 routes.use('/tours', tourController);
 
 export default routes;

@@ -1,4 +1,4 @@
-import { Location } from './location';
+import { tourLocation } from './tourLocation';
 
 
 export interface Tour {
@@ -6,5 +6,5 @@ export interface Tour {
     description: string;
     image: string;
     audio: string;
-    locations: Location[];
+    tourLocations: tourLocation[];
 }
