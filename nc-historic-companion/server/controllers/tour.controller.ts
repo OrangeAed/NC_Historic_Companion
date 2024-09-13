@@ -16,6 +16,23 @@ export const getAllTours = (req: Request, res: Response) => {
     }
 };
 
+export const getTour = (req: Request, res: Response) => {
+    const tourId = req.params.id;
+
+    try {
+        const data = readFileSync(dataPath, 'utf8');
+        const tours = JSON.parse(data).tours;
+        const tour = tours[tourId];
+        if (!tour) {
+            return res.status(404).send('Tour not found');
+        }
+        res.status(200).json(tour);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error reading tours.json');
+    }
+}
+
 export const addTour = (req: Request, res: Response) => {
     const newTour: TourData = req.body;
 
