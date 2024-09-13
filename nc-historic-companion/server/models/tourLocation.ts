@@ -1,6 +1,6 @@
 import { LocationComponentData } from "./locationComponent.ts";
 
-export interface tourLocationData {
+export interface TourLocationData {
     title: string;
     description: string;
     components: LocationComponentData[];
