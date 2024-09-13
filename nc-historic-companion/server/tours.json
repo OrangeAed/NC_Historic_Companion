@@ -14,7 +14,7 @@
             {
               "type": "image",
               "content": "http://localhost:5000/public/photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg",
-                "caption": "A picture of the church at Brunswick Town/Fort Anderson State Historic Site."
+              "caption": "A picture of the church at Brunswick Town/Fort Anderson State Historic Site."
             },
             {
               "type": "text",
@@ -48,7 +48,7 @@
       }
     },
     "tour_2": {
-        "id": "tour_2",
+      "id": "tour_2",
       "title": "Civil War Fort Anderson Tour",
       "description": "This is the second tour",
       "image": "http://localhost:5000/public/photos/D_2020_06_09_7985_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Canon_300_LF.jpg",
@@ -95,12 +95,20 @@
       }
     },
     "tour_3": {
-        "id": "tour_3",
+      "id": "tour_3",
       "title": "tour_3",
       "description": "desc",
       "image": "http://localhost:5000/public/photos/D_2020_06_09_IMG2595_BrunswickTown_Fort_Anderson_Historic_Site_Singing_On_The_Land_300_LF_4.jpg",
       "audio": "http://localhost:5000/public/audio/sample_audio.m4a",
       "locations": {}
+    },
+    "tour_4": {
+      "id": "tour_4",
+      "title": "tour_4",
+      "description": "This is the fourth tour",
+      "image": "image_url",
+      "locations": {},
+      "audio": "audio_url"
     }
   }
 }

@@ -36,16 +36,21 @@ export const getTour = (req: Request, res: Response) => {
 export const addTour = (req: Request, res: Response) => {
     const newTour: TourData = req.body;
 
-    if (!newTour || !newTour.id) {
-        return res.status(400).send('Invalid tour data');
+    if (!newTour) {
+        return res.status(400).send('No body data');
+    } else if (!newTour.id) {
+        return res.status(400).send(req);
     }
 
     try {
         const data = readFileSync(dataPath, 'utf8');
         const tours = JSON.parse(data).tours;
+        if (tours[newTour.id]) {
+            return res.status(400).send('Tour already exists');
+        }
         tours[newTour.id] = newTour;
         writeFileSync(dataPath, JSON.stringify({ tours }, null, 2));
-        res.status(201).send('Tour added successfully');
+        res.status(201).json({ message: 'Tour added successfully' });
     } catch (err) {
         console.error(err);
         res.status(500).send('Error writing to tours.json');
