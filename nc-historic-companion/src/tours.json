@@ -1,7 +1,6 @@
 {
   "tours": {
     "tour_1": {
-      "id": "tour_1",
       "title": "Tour 1",
       "description": "This is the first tour",
       "image": "../photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg",
@@ -25,7 +24,6 @@
       }
     },
     "tour_2": {
-        "id": "tour_2",
         "title": "Tour 2",
         "description": "This is the second tour",
         "image": "../photos/D_2020_06_09_7985_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Canon_300_LF.jpg",
