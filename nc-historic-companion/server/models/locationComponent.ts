@@ -1,5 +1,5 @@
-export interface LocationComponent {
-    type: string;
+export interface LocationComponentData {
+    type: "text" | "image" | "audio";
     content: string;
     caption?: string;
 }
