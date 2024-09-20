@@ -1,21 +1,24 @@
 import { TourObject } from '../models/tour';
 
+// api.ts
 export const getAllTours = async () => {
     try {
-        const response = await fetch('http://localhost:5000/api/tours',
-            {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            });
+        const response = await fetch('http://localhost:5000/api/tours');
         if (!response.ok) {
+            console.log(response.body);
             throw new Error('Failed to get tours');
         }
-        return await response.json();
+
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            return await response.json();
+        } else {
+            const text = await response.text();
+            throw new Error(`Unexpected response format: ${text}`);
+        }
     } catch (error) {
         console.error('Error:', error);
-        // throw error;
+        throw error;
     }
 }
 

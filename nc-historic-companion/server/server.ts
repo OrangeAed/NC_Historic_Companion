@@ -1,11 +1,19 @@
 // server/server.ts
 import express from 'express';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 import multer from 'multer';
 import { getAllTours, getTour, addTour, deleteTour, addTourLocation, deleteTourLocation } from './controllers/tour.controller.ts';
 
 const app = express();
 const port = 5000;
+
+const corsOptions = {
+    origin: 'http://localhost:5001', // Allow requests from this origin
+    optionsSuccessStatus: 200 // Some legacy browsers choke on 204
+};
+
+app.use(cors(corsOptions));
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -33,6 +41,6 @@ app.delete('/api/tours/:id', deleteTour);
 app.post('/api/tours/:id/locations', upload.fields([{ name: 'image' }, { name: 'audio' }]), addTourLocation);
 app.delete('/api/tours/:tourId/locations/:locationId', deleteTourLocation);
 
-app.listen(port, '172.20.12.133', () => {
-    console.log(`Server is running on http://0.0.0.0:${port}`);
+app.listen(port, 'localhost', () => {
+    console.log(`Server is running on http://172.20.12.133:${port}`);
 });
