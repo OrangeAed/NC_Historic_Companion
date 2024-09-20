@@ -89,18 +89,21 @@ export const addTourLocation = (req: Request, res: Response) => {
     const components: LocationComponentData[] = [];
     if (req.body.image){
         components.push({
+            index: 0,
             type: 'image',
             content: req.body.image
         });
     }
     if (req.body.audio){
         components.push({
+            index: 1,
             type: 'audio',
             content: req.body.audio
         });
     }
     if (req.body.text){
         components.push({
+            index: 2,
             type: 'text',
             content: req.body.text
         });
@@ -135,3 +138,28 @@ export const addTourLocation = (req: Request, res: Response) => {
         res.status(500).send('Error writing to tours.json');
     }
 };
+
+export const deleteTourLocation = (req: Request, res: Response) => {
+    const { id, locationId } = req.params;
+
+    try {
+        const data = readFileSync(dataPath, 'utf8');
+        const tours = JSON.parse(data).tours;
+        const tour = tours[id];
+
+        if (!tour) {
+            return res.status(404).send('Tour not found');
+        }
+
+        if (!tour.locations[locationId]) {
+            return res.status(404).send('Location not found');
+        }
+
+        delete tour.locations[locationId];
+        writeFileSync(dataPath, JSON.stringify({ tours }, null, 2));
+        res.status(200).send('Location deleted successfully');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error writing to tours.json');
+    }
+}

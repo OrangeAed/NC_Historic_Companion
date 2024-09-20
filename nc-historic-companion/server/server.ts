@@ -2,7 +2,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import multer from 'multer';
-import { getAllTours, getTour, addTour, deleteTour, addTourLocation } from './controllers/tour.controller.ts';
+import { getAllTours, getTour, addTour, deleteTour, addTourLocation, deleteTourLocation } from './controllers/tour.controller.ts';
 
 const app = express();
 const port = 5000;
@@ -31,6 +31,7 @@ app.post('/api/tours', upload.fields([{ name: 'image' }, { name: 'audio' }]), ad
 app.get('/api/tours/:id', getTour);
 app.delete('/api/tours/:id', deleteTour);
 app.post('/api/tours/:id/locations', upload.fields([{ name: 'image' }, { name: 'audio' }]), addTourLocation);
+app.delete('/api/tours/:tourId/locations/:locationId', deleteTourLocation);
 
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server is running on http://0.0.0.0:${port}`);
