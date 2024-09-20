@@ -1,7 +1,7 @@
 // src/pages/TourView/TourView.tsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getTour } from '../../../../../src/api/api';
+import { getTour } from '../../../../api/api';
 import { TourData } from '../../../../../src/types';
 import LocationCard from '../../components/LocationCard/LocationCard';
 import TourCard from '../../components/TourCard/TourCard'; // Import the TourCard component

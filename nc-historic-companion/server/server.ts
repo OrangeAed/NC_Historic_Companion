@@ -33,6 +33,6 @@ app.delete('/api/tours/:id', deleteTour);
 app.post('/api/tours/:id/locations', upload.fields([{ name: 'image' }, { name: 'audio' }]), addTourLocation);
 app.delete('/api/tours/:tourId/locations/:locationId', deleteTourLocation);
 
-app.listen(port, '0.0.0.0', () => {
+app.listen(port, '172.20.12.133', () => {
     console.log(`Server is running on http://0.0.0.0:${port}`);
 });

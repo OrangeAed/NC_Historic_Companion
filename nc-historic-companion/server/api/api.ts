@@ -1,15 +1,21 @@
 import { TourObject } from '../models/tour';
 
-export const getTours = async () => {
+export const getAllTours = async () => {
     try {
-        const response = await fetch('http://localhost:5000/api/tours');
+        const response = await fetch('http://localhost:5000/api/tours',
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
         if (!response.ok) {
             throw new Error('Failed to get tours');
         }
         return await response.json();
     } catch (error) {
         console.error('Error:', error);
-        throw error;
+        // throw error;
     }
 }
 

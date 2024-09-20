@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getTour } from '../../api/api';
+import { getTour } from '../../../server/api/api';
 import './BackNextLocationButtons.css';
 
 const BackNextLocationButtons = ({ tour, location }: { tour: string, location: string }) => {

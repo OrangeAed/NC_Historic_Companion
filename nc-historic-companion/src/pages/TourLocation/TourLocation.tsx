@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getTour } from '../../api/api';
+import { getTour } from '../../../server/api/api';
 import { LocationData } from '../../types';
 import TextComponent from "../../components/LocationComponents/TextComponent/TextComponent";
 import ImageComponent from "../../components/LocationComponents/ImageComponent/ImageComponent";

@@ -2,8 +2,9 @@
 import { FC, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './FrontPage.css';
-import {getTour} from "../../api/api.ts";
-import { TourData, LocationData } from "../../types"; // Import the types
+import { getTour } from "../../../server/api/api";
+import { TourData } from "../../../server/models/tour"; // Import the types
+import { LocationData } from "../../../server/models/tourLocation"; // Import the types
 
 type Params = {
     tour: string;
