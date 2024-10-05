@@ -4,8 +4,8 @@
       "id": "tour_1",
       "title": "Town of Brunswick",
       "description": "Tour of the excavated town of Brunswick, dating back to the early 1700s.",
-      "audio": "http://localhost:5000/public/audio/sample_audio.m4a",
-      "image": "http://localhost:5000/public/photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg",
+      "audio": "/public/audio/sample_audio.m4a",
+      "image": "/public/photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg",
       "locations": {
         "location_1": {
           "title": "Church",
@@ -14,7 +14,7 @@
             {
               "index": 0,
               "type": "image",
-              "content": "http://localhost:5000/public/photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg",
+              "content": "/public/photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg",
               "caption": "A picture of the church at Brunswick Town/Fort Anderson State Historic Site."
             },
             {
@@ -25,7 +25,7 @@
             {
               "index": 2,
               "type": "audio",
-              "content": "http://localhost:5000/public/audio/sample_audio.m4a"
+              "content": "/public/audio/sample_audio.m4a"
             }
           ]
         },
@@ -36,7 +36,7 @@
             {
               "index": 0,
               "type": "image",
-              "content": "http://localhost:5000/public/photos/D_2020_06_09_IMG2595_BrunswickTown_Fort_Anderson_Historic_Site_Singing_On_The_Land_300_LF_4.jpg",
+              "content": "/public/photos/D_2020_06_09_IMG2595_BrunswickTown_Fort_Anderson_Historic_Site_Singing_On_The_Land_300_LF_4.jpg",
               "caption": "A picture of a civil war cannon in the foreground and the church in the background."
             },
             {
@@ -47,7 +47,7 @@
             {
               "index": 2,
               "type": "audio",
-              "content": "http://localhost:5000/public/audio/sample_audio.m4a"
+              "content": "/public/audio/sample_audio.m4a"
             }
           ]
         }
@@ -57,8 +57,8 @@
       "id": "tour_2",
       "title": "Civil War Fort Anderson Tour",
       "description": "This is the second tour",
-      "image": "http://localhost:5000/public/photos/D_2020_06_09_7985_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Canon_300_LF.jpg",
-      "audio": "http://localhost:5000/public/audio/sample_audio.m4a",
+      "image": "/public/photos/D_2020_06_09_7985_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Canon_300_LF.jpg",
+      "audio": "/public/audio/sample_audio.m4a",
       "locations": {
         "location_1": {
           "title": "Location 1",
@@ -78,7 +78,7 @@
             {
               "index": 2,
               "type": "audio",
-              "content": "http://localhost:5000/public/audio/sample_audio.m4a"
+              "content": "/public/audio/sample_audio.m4a"
             }
           ]
         },
@@ -89,7 +89,7 @@
             {
               "index": 0,
               "type": "audio",
-              "content": "http://localhost:5000/public/audio/sample_audio.m4a"
+              "content": "/public/audio/sample_audio.m4a"
             },
             {
               "index": 1,
@@ -110,8 +110,8 @@
       "id": "tour_3",
       "title": "tour_3",
       "description": "desc",
-      "image": "http://localhost:5000/public/photos/D_2020_06_09_IMG2595_BrunswickTown_Fort_Anderson_Historic_Site_Singing_On_The_Land_300_LF_4.jpg",
-      "audio": "http://localhost:5000/public/audio/sample_audio.m4a",
+      "image": "/public/photos/D_2020_06_09_IMG2595_BrunswickTown_Fort_Anderson_Historic_Site_Singing_On_The_Land_300_LF_4.jpg",
+      "audio": "/public/audio/sample_audio.m4a",
       "locations": {}
     },
     "tour_4": {
