@@ -9,7 +9,7 @@ const app = express();
 const port = 5000;
 
 const corsOptions = {
-    origin: 'http://localhost:5001', // Allow requests from this origin
+    origin: '*', // Allow requests from any origin
     optionsSuccessStatus: 200 // Some legacy browsers choke on 204
 };
 
@@ -31,7 +31,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 app.use('/uploads', express.static('uploads'));
 
-
 app.use(bodyParser.json());
 
 app.get('/api/tours', getAllTours);
@@ -42,5 +41,5 @@ app.post('/api/tours/:id/locations', upload.fields([{ name: 'image' }, { name: '
 app.delete('/api/tours/:tourId/locations/:locationId', deleteTourLocation);
 
 app.listen(port, 'localhost', () => {
-    console.log(`Server is running on http://172.20.12.133:${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 });
