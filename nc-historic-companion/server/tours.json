@@ -123,10 +123,18 @@
       "locations": {
         "location_1": {
           "title": "Location 1",
-          "description": "\"This is the first location",
+          "description": "This is the first location",
           "components": []
         }
       }
+    },
+    "af": {
+      "id": "af",
+      "title": "af",
+      "description": "ad",
+      "image": "/public/photos/1728158889033-a517854b6e183b98c507993dcfd9086b-1794600892.jpg",
+      "audio": "/public/audio/1728158889049-Record (online-voice-recorder.com).mp3",
+      "locations": {}
     }
   }
 }
