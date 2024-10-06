@@ -1,4 +1,4 @@
-import { TourObject } from '../models/tour';
+import {TourObject} from '../models/tour';
 
 // api.ts
 export const getAllTours = async () => {

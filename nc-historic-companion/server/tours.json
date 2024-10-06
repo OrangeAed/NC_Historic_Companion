@@ -4,17 +4,18 @@
       "id": "tour_1",
       "title": "Town of Brunswick",
       "description": "Tour of the excavated town of Brunswick, dating back to the early 1700s.",
-      "audio": "/public/audio/sample_audio.m4a",
-      "image": "/public/photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg",
+      "audio": "/audio/sample_audio.m4a",
+      "image": "/photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg",
       "locations": {
         "location_1": {
           "title": "Church",
           "description": "Begin by exiting the visitor center and taking a left. Walk down the path until you reach the church.",
+          "next": "/tours/tour_1/location_2",
           "components": [
             {
               "index": 0,
               "type": "image",
-              "content": "/public/photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg",
+              "content": "/photos/D_2020_06_09_7437_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Church_Landscape_LF.jpg",
               "caption": "A picture of the church at Brunswick Town/Fort Anderson State Historic Site."
             },
             {
@@ -25,7 +26,7 @@
             {
               "index": 2,
               "type": "audio",
-              "content": "/public/audio/sample_audio.m4a"
+              "content": "/audio/sample_audio.m4a"
             }
           ]
         },
@@ -36,7 +37,7 @@
             {
               "index": 0,
               "type": "image",
-              "content": "/public/photos/D_2020_06_09_IMG2595_BrunswickTown_Fort_Anderson_Historic_Site_Singing_On_The_Land_300_LF_4.jpg",
+              "content": "/photos/D_2020_06_09_IMG2595_BrunswickTown_Fort_Anderson_Historic_Site_Singing_On_The_Land_300_LF_4.jpg",
               "caption": "A picture of a civil war cannon in the foreground and the church in the background."
             },
             {
@@ -47,7 +48,7 @@
             {
               "index": 2,
               "type": "audio",
-              "content": "/public/audio/sample_audio.m4a"
+              "content": "/audio/sample_audio.m4a"
             }
           ]
         }
@@ -57,8 +58,8 @@
       "id": "tour_2",
       "title": "Civil War Fort Anderson Tour",
       "description": "This is the second tour",
-      "image": "/public/photos/D_2020_06_09_7985_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Canon_300_LF.jpg",
-      "audio": "/public/audio/sample_audio.m4a",
+      "image": "/photos/D_2020_06_09_7985_Brunswick_Town_Ft_Anderson_Singing_On_The_Land_Canon_300_LF.jpg",
+      "audio": "/audio/sample_audio.m4a",
       "locations": {
         "location_1": {
           "title": "Location 1",
@@ -78,7 +79,7 @@
             {
               "index": 2,
               "type": "audio",
-              "content": "/public/audio/sample_audio.m4a"
+              "content": "/audio/sample_audio.m4a"
             }
           ]
         },
@@ -89,7 +90,7 @@
             {
               "index": 0,
               "type": "audio",
-              "content": "/public/audio/sample_audio.m4a"
+              "content": "/audio/sample_audio.m4a"
             },
             {
               "index": 1,
@@ -110,16 +111,16 @@
       "id": "tour_3",
       "title": "tour_3",
       "description": "desc",
-      "image": "/public/photos/D_2020_06_09_IMG2595_BrunswickTown_Fort_Anderson_Historic_Site_Singing_On_The_Land_300_LF_4.jpg",
-      "audio": "/public/audio/sample_audio.m4a",
+      "image": "/photos/D_2020_06_09_IMG2595_BrunswickTown_Fort_Anderson_Historic_Site_Singing_On_The_Land_300_LF_4.jpg",
+      "audio": "/audio/sample_audio.m4a",
       "locations": {}
     },
     "tour_4": {
       "id": "tour_4",
       "title": "tour_4",
       "description": "the fourth tour",
-      "image": "/public/photos/1726451460451-a517854b6e183b98c507993dcfd9086b-1794600892.jpg",
-      "audio": "/public/audio/1726451460459-Record (online-voice-recorder.com).mp3",
+      "image": "/photos/1726451460451-a517854b6e183b98c507993dcfd9086b-1794600892.jpg",
+      "audio": "/audio/1726451460459-Record (online-voice-recorder.com).mp3",
       "locations": {
         "location_1": {
           "title": "Location 1",
@@ -132,8 +133,8 @@
       "id": "af",
       "title": "af",
       "description": "ad",
-      "image": "/public/photos/1728158889033-a517854b6e183b98c507993dcfd9086b-1794600892.jpg",
-      "audio": "/public/audio/1728158889049-Record (online-voice-recorder.com).mp3",
+      "image": "/photos/1728158889033-a517854b6e183b98c507993dcfd9086b-1794600892.jpg",
+      "audio": "/audio/1728158889049-Record (online-voice-recorder.com).mp3",
       "locations": {}
     }
   }
