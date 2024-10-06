@@ -87,7 +87,7 @@ follow these guidelines:
 
 2. **Create a Branch**: Create a new branch for your feature or bug fix.
     ```sh
-    git checkout -b <feature-or-bugfix-name>
+    git checkout -b feature-or-bugfix-name
     ```
 
 3. **Make Changes**: Implement your changes in the codebase. Ensure your code follows the project's coding standards and
@@ -101,7 +101,7 @@ follow these guidelines:
 
 5. **Push to GitHub**: Push your changes to your forked repository.
     ```sh
-    git push origin <feature-or-bugfix-name>
+    git push origin feature-or-bugfix-name
     ```
 
 6. **Create a Pull Request**: Go to the original repository and create a pull request from your forked repository.
