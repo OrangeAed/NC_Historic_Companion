@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getAllTours } from "../../api/api.ts";
+import { getAllTours } from "../../../server/api/api.ts";
 import {TourData} from "../../types.ts";
 
 const TourList: FC = () => {

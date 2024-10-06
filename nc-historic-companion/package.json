@@ -11,7 +11,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "jest --config jest.config.cjs",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "clean": "rm -rf dist"
   },
   "dependencies": {
     "@types/multer": "^1.4.11",
@@ -19,6 +20,8 @@
     "@vitejs/plugin-react-refresh": "^1.3.6",
     "antd": "^5.19.3",
     "async-lock": "^1.4.1",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
     "express": "^4.19.2",
     "multer": "^1.4.5-lts.1",
     "mutter": "^1.0.1",

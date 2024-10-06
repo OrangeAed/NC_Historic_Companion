@@ -1,58 +1,51 @@
-import express, { Request, Response, NextFunction } from 'express';
-import cors from "cors";
-import router from './routes/api.ts'; // Import router
-import ApiCtrl from './controllers/api.ts'; // Import API methods
-import multer, { diskStorage, StorageEngine } from 'multer';
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import multer from 'multer';
+import {
+    getAllTours,
+    getTour,
+    addTour,
+    deleteTour,
+    addTourLocation,
+    deleteTourLocation
+} from './controllers/tour.controller.ts';
 
 const app = express();
-const port: string | number = process.env.PORT || 5000; // Change this to the port your client is running on
+const port = 5000;
 
-const apiCtrl = new ApiCtrl(); // Create an instance of the API controller
-app.use(express.json());
-app.use(cors());
-app.use('/api', router);
-app.use('/public', express.static('public'));
+const corsOptions = {
+    origin: '*', // Allow requests from any origin
+    optionsSuccessStatus: 200 // Some legacy browsers choke on 204
+};
+
+app.use(cors(corsOptions));
 
 const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './public/photos/');
+    destination: (req, file, cb) => {
+        if (file.fieldname === 'image') {
+            cb(null, 'public/photos/');
+        } else if (file.fieldname === 'audio') {
+            cb(null, 'public/audio/');
+        }
     },
-    filename: function(req, file, cb) {
-        cb(null, file.originalname);
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}-${file.originalname}`);
     }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({storage});
+app.use('/uploads', express.static('uploads'));
 
-app.post('/api/tours', upload.single('image'), (req: Request, res: Response) => {
-    // req.files is an object where fieldname is the key and the value is an array of files
-    // You can access uploaded files with req.files['fieldname']
-    // Your existing code to handle the POST request goes here
+app.use(bodyParser.json());
 
-});
+app.get('/api/tours', getAllTours);
+app.post('/api/tours', upload.fields([{name: 'image'}, {name: 'audio'}]), addTour);
+app.get('/api/tours/:id', getTour);
+app.delete('/api/tours/:id', deleteTour);
+app.post('/api/tours/:id/locations', upload.fields([{name: 'image'}, {name: 'audio'}]), addTourLocation);
+app.delete('/api/tours/:tourId/locations/:locationId', deleteTourLocation);
 
-app.use(function(req: Request, res: Response, next: NextFunction) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-    );
-    res.setHeader(
-        "Access-Control-Allow-Methods",
-        "GET, POST, PATCH, PUT, DELETE, OPTIONS"
-    );
-    next();
-})
-
-// Define your routes here
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello World!');
-});
-app.get('/tours', apiCtrl.getAllTours);
-app.get('/tours/:id', apiCtrl.getTour);
-app.post('/tours', apiCtrl.addTour);
-app.delete('/tours/:id', apiCtrl.deleteTour);
-
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+app.listen(port, 'localhost', () => {
+    console.log(`Server is running on http://localhost:${port}`);
 });

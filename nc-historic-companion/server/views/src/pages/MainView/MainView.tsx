@@ -1,7 +1,7 @@
 // src/pages/MainView/MainView.tsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getAllTours } from '../../../../../src/api/api';
+import  { getAllTours } from '../../../../api/api';
 import { TourData } from '../../../../../src/types';
 import TourCard from '../../components/TourCard/TourCard';
 import '../../../../../global.css'; // Import the CSS file
@@ -15,6 +15,7 @@ const MainView: React.FC = () => {
     useEffect(() => {
         getAllTours()
             .then(response => {
+                console.log("Response: ", response);
                 setData(response);
                 setIsLoading(false);
             });

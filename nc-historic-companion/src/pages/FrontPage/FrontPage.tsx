@@ -1,9 +1,9 @@
 // src/pages/FrontPage/FrontPage.tsx
-import { FC, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import {FC, useEffect, useState} from 'react';
+import {useNavigate, useParams} from 'react-router-dom';
 import './FrontPage.css';
-import {getTour} from "../../api/api.ts";
-import { TourData, LocationData } from "../../types"; // Import the types
+import {getTour} from "../../../server/api/api";
+import {TourData} from "../../../server/models/tour"; // Import the types
 
 type Params = {
     tour: string;
@@ -13,9 +13,9 @@ interface FrontPageProps {
     tour?: string;
 }
 
-const FrontPage: FC<FrontPageProps> = ({ tour: propTour }) => {
+const FrontPage: FC<FrontPageProps> = ({tour: propTour}) => {
     const navigate = useNavigate();
-    const { tour: urlTour } = useParams<Params>();
+    const {tour: urlTour} = useParams<Params>();
     const [data, setData] = useState<TourData | null>(null);
 
     const tour = propTour || urlTour;
@@ -25,10 +25,10 @@ const FrontPage: FC<FrontPageProps> = ({ tour: propTour }) => {
             console.error('Tour is not defined');
             return;
         }
-        getTour(tour).then((response) => { setData(response) });
-        console.log('tour:', tour)
+        getTour(tour).then((response) => {
+            setData(response)
+        });
     }, [tour]);
-    console.log(data)
 
     const handleButtonClick = () => {
         if (data) {
