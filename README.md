@@ -90,8 +90,7 @@ follow these guidelines:
     git checkout -b <feature-or-bugfix-name>
     ```
 
-3. **Make Changes**: Implement your changes in the codebase. Ensure your code follows the project's coding standards and
-   includes necessary tests.
+3. **Make Changes**: Implement your changes in the codebase. Ensure your code follows the project's coding standards and is well documented.
 
 4. **Commit Changes**: Commit your changes with a clear and concise commit message.
     ```sh
