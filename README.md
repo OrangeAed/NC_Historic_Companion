@@ -72,8 +72,6 @@ browser.
 
 ## Contributing
 
-## Contributing
-
 We welcome contributions to the North Carolina Historic Companion project! To ensure a smooth collaboration, please
 follow these guidelines:
 
